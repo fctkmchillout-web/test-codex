@@ -1,0 +1,219 @@
+:root {
+    --bg-color: #f4f6fb;
+    --card-bg: #ffffff;
+    --accent: #3a7bd5;
+    --accent-dark: #2753a5;
+    --text-primary: #1a1f36;
+    --text-secondary: #5f6c92;
+    --shadow: 0 20px 45px rgba(26, 31, 54, 0.12);
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    width: min(1100px, 94vw);
+    margin: 0 auto;
+    flex: 1;
+    padding: 4rem 0 3rem;
+}
+
+.hero {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+}
+
+.hero__title {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 34rem;
+}
+
+.calculator {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: 1.6rem;
+}
+
+.calculator__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.calculator__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+}
+
+.calculator__group label,
+.calculator__group span {
+    font-weight: 600;
+}
+
+.calculator__group input,
+.calculator__group select {
+    border: 1px solid #d7def0;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background: #f9faff;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calculator__group input:focus,
+.calculator__group select:focus,
+.calculator__group input:hover,
+.calculator__group select:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.15);
+    outline: none;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.radio {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, border 0.2s ease;
+    color: var(--text-secondary);
+}
+
+.radio input {
+    accent-color: var(--accent);
+}
+
+.radio input:checked + span,
+.radio:hover span {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.calculator__group--slider input[type="range"] {
+    width: 100%;
+}
+
+.calculator__group--slider small {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.button {
+    background: linear-gradient(135deg, var(--accent), #67b26f);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    padding: 0.9rem 1.3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(58, 123, 213, 0.25);
+}
+
+.results {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.results__title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.results__cards {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+}
+
+.card h3 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+}
+
+.card__value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.results__summary {
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.footer {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 1.5rem 0 2rem;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 960px) {
+    .hero {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding-top: 3rem;
+    }
+
+    .calculator {
+        padding: 1.6rem;
+        border-radius: 18px;
+    }
+
+    .radio-group {
+        flex-direction: column;
+    }
+}
