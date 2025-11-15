@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор КБЖУ</title>
+    <title>Онлайн-калькулятор калорий для похудения</title>
+    <meta name="description" content="Рассчитайте суточную норму калорий, дефицит для похудения и баланс БЖУ по формуле Миффлина-Сан Жеора. Интерактивный калькулятор калорий онлайн с экспертными рекомендациями." />
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,95 +12,301 @@
 </head>
 <body>
     <main class="page">
-        <section class="hero">
-            <div class="hero__content">
-                <h1 class="hero__title">Личный калькулятор КБЖУ</h1>
-                <p class="hero__subtitle">Рассчитайте дневную норму калорий, белков, жиров и углеводов с учётом ваших целей и образа жизни.</p>
+        <section class="hero" id="calculator-block">
+            <div class="hero__intro">
+                <h1>Онлайн-калькулятор калорий для похудения</h1>
+                <p class="subtitle">Рассчитайте свою суточную норму калорий и баланс БЖУ для эффективного и безопасного снижения веса.</p>
+                <p class="note">Инструмент использует формулу Миффлина–Сан Жеора для расчёта BMR и учитывает ваш уровень активности, чтобы определить оптимальный дефицит калорий.</p>
             </div>
-            <form class="calculator" id="calculator" novalidate>
-                <div class="calculator__group">
-                    <label for="gender">Пол</label>
-                    <div class="radio-group">
-                        <label class="radio">
-                            <input type="radio" name="gender" value="male" checked>
-                            <span>Мужчина</span>
+            <form class="calculator" id="calorieCalculator" novalidate>
+                <fieldset class="calculator__group">
+                    <legend>Исходные данные</legend>
+                    <div class="grid">
+                        <label>
+                            <span>Пол</span>
+                            <div class="radio-group">
+                                <label class="radio">
+                                    <input type="radio" name="gender" value="male" checked>
+                                    <span>Мужской</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="gender" value="female">
+                                    <span>Женский</span>
+                                </label>
+                            </div>
                         </label>
-                        <label class="radio">
-                            <input type="radio" name="gender" value="female">
-                            <span>Женщина</span>
+                        <label>
+                            <span>Возраст</span>
+                            <input type="number" name="age" id="age" placeholder="лет" required min="16" max="80">
+                        </label>
+                        <label>
+                            <span>Вес</span>
+                            <input type="number" name="weight" id="weight" placeholder="кг" required min="35" max="250" step="0.1">
+                        </label>
+                        <label>
+                            <span>Рост</span>
+                            <input type="number" name="height" id="height" placeholder="см" required min="120" max="220">
+                        </label>
+                        <label>
+                            <span>Уровень активности</span>
+                            <select name="activity" id="activity" required>
+                                <option value="1.2">Минимальная — сидячая работа, редкие прогулки</option>
+                                <option value="1.375">Низкая — лёгкие тренировки 1–3 раза в неделю</option>
+                                <option value="1.55">Средняя — 3–5 тренировок в неделю</option>
+                                <option value="1.725">Высокая — спорт почти каждый день</option>
+                                <option value="1.9">Очень высокая — тяжёлый физический труд или две тренировки в день</option>
+                            </select>
                         </label>
                     </div>
-                </div>
-                <div class="calculator__grid">
-                    <label class="calculator__group" for="age">
-                        <span>Возраст</span>
-                        <input type="number" id="age" name="age" min="10" max="100" required placeholder="лет">
-                    </label>
-                    <label class="calculator__group" for="height">
-                        <span>Рост</span>
-                        <input type="number" id="height" name="height" min="120" max="250" required placeholder="см">
-                    </label>
-                    <label class="calculator__group" for="weight">
-                        <span>Вес</span>
-                        <input type="number" id="weight" name="weight" min="35" max="250" required placeholder="кг">
-                    </label>
-                </div>
-                <label class="calculator__group" for="activity">
-                    <span>Уровень активности</span>
-                    <select id="activity" name="activity" required>
-                        <option value="1.2">Минимальная (офисная работа)</option>
-                        <option value="1.375">Лёгкие тренировки (1-3 раза в неделю)</option>
-                        <option value="1.55">Средняя активность (3-5 тренировок)</option>
-                        <option value="1.725">Высокая активность (6-7 тренировок)</option>
-                        <option value="1.9">Экстремальная активность</option>
-                    </select>
-                </label>
-                <label class="calculator__group" for="goal">
-                    <span>Цель</span>
-                    <select id="goal" name="goal" required>
-                        <option value="-0.15">Похудение</option>
-                        <option value="0">Поддержание веса</option>
-                        <option value="0.15">Набор мышечной массы</option>
-                    </select>
-                </label>
-                <div class="calculator__group calculator__group--slider">
-                    <div class="slider-label">
-                        <span>Доля белка</span>
-                        <span id="proteinValue">30%</span>
-                    </div>
-                    <input type="range" id="protein" min="20" max="40" value="30" step="1">
-                    <small>Остальные макронутриенты пересчитаются автоматически.</small>
-                </div>
+                </fieldset>
                 <button type="submit" class="button">Рассчитать</button>
-                <p class="calculator__note">Перед началом серьёзных изменений образа жизни проконсультируйтесь с врачом.</p>
+                <p class="disclaimer">Важно: любая программа снижения веса должна согласовываться с врачом или диетологом. Не опускайтесь ниже безопасной нормы калорий.</p>
             </form>
         </section>
+
         <section class="results" id="results" hidden>
-            <h2 class="results__title">Ваш баланс на день</h2>
-            <div class="results__cards">
-                <article class="card">
-                    <h3>Калории</h3>
-                    <p class="card__value" id="calories">0 ккал</p>
+            <h2>Результаты расчёта и дефицит калорий</h2>
+            <div class="results__grid">
+                <article class="result-card">
+                    <h3>BMR — основной обмен</h3>
+                    <p class="result-value" id="bmrValue">0 ккал</p>
+                    <p class="result-desc">Минимальное количество энергии, необходимое организму в состоянии покоя.</p>
                 </article>
-                <article class="card">
-                    <h3>Белки</h3>
-                    <p class="card__value" id="proteins">0 г</p>
-                </article>
-                <article class="card">
-                    <h3>Жиры</h3>
-                    <p class="card__value" id="fats">0 г</p>
-                </article>
-                <article class="card">
-                    <h3>Углеводы</h3>
-                    <p class="card__value" id="carbs">0 г</p>
+                <article class="result-card">
+                    <h3>AMR — суточная норма</h3>
+                    <p class="result-value" id="amrValue">0 ккал</p>
+                    <p class="result-desc">BMR с учётом вашей активности — это ориентир для поддержания текущего веса.</p>
                 </article>
             </div>
-            <p class="results__summary" id="summary"></p>
+            <div class="table-wrapper">
+                <table class="result-table">
+                    <caption>Сколько калорий нужно чтобы похудеть</caption>
+                    <thead>
+                        <tr>
+                            <th>Цель</th>
+                            <th>Калорий</th>
+                            <th>Комментарий</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Поддержание веса</td>
+                            <td id="maintainCalories">0 ккал</td>
+                            <td>Используйте, если хотите удерживать текущий вес.</td>
+                        </tr>
+                        <tr>
+                            <td>Похудение (−15%)</td>
+                            <td id="mildDeficitCalories">0 ккал</td>
+                            <td>Оптимальный дефицит калорий для постепенного снижения веса 0,5–1 кг в неделю.</td>
+                        </tr>
+                        <tr class="warning-row">
+                            <td>Экстремальное похудение (−25%)</td>
+                            <td id="aggressiveDeficitCalories">0 ккал</td>
+                            <td>Используйте только под контролем специалиста — высокий риск нехватки нутриентов.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <section class="macros" aria-labelledby="macros-heading">
+                <h3 id="macros-heading">Рекомендуемый баланс БЖУ при похудении</h3>
+                <p>Расчёт основан на формуле: белки — 1,6 г/кг веса, жиры — 0,8 г/кг, углеводы — остаток калорий. Значения округлены до целых.</p>
+                <div class="table-wrapper">
+                    <table class="result-table">
+                        <thead>
+                            <tr>
+                                <th>Макронутриент</th>
+                                <th>Количество</th>
+                                <th>Пояснение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Белки</td>
+                                <td id="proteinAmount">0 г</td>
+                                <td>Поддерживают мышечную массу и снижают чувство голода.</td>
+                            </tr>
+                            <tr>
+                                <td>Жиры</td>
+                                <td id="fatAmount">0 г</td>
+                                <td>Нужны для гормонального баланса и усвоения витаминов.</td>
+                            </tr>
+                            <tr>
+                                <td>Углеводы</td>
+                                <td id="carbAmount">0 г</td>
+                                <td>Источник энергии для тренировок и мозга. Рекомендуем распределять между основными приёмами пищи.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="alert" id="safetyNotice" role="alert" hidden>
+                <strong>Внимание!</strong> Полученная калорийность ниже 1200 ккал. Обратитесь к врачу, прежде чем снижать рацион настолько резко.
+            </div>
+        </section>
+
+        <section class="interpretation">
+            <h2>Что означают эти цифры?</h2>
+            <div class="interpretation__grid">
+                <article>
+                    <h3>Ваш основной обмен (BMR)</h3>
+                    <p>Основной обмен — это количество энергии, которое организм расходует в состоянии покоя на поддержание жизненно важных функций: дыхание, работу сердца, терморегуляцию. Формула Миффлина–Сан Жеора считается наиболее точной для расчёта BMR у современных людей.</p>
+                </article>
+                <article>
+                    <h3>Суточная норма с учётом активности (AMR)</h3>
+                    <p>AMR учитывает ваш образ жизни и уровень физической активности. Если вести пищевой дневник и придерживаться этой нормы, вес будет стабильным. При повышении активности потребность в калориях возрастает.</p>
+                </article>
+                <article>
+                    <h3>Дефицит калорий</h3>
+                    <p>Дефицит — это разница между потреблённой и потраченной энергией. Оптимально выбирать дефицит 10–20%: так жир уходит постепенно, а организм успевает адаптироваться без потери мышц и дефицита витаминов.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="education">
+            <h2>Норма БЖУ для похудения</h2>
+            <p>Чтобы похудеть без вреда для здоровья, важно не только сократить калории, но и сохранить баланс макронутриентов. При снижении веса белок должен оставаться на высоком уровне, а жиры — не опускаться ниже 0,8 г/кг. Остаток калорий заполняем сложными углеводами и клетчаткой.</p>
+            <div class="education__grid">
+                <article>
+                    <h3>Роль белков, жиров и углеводов</h3>
+                    <p><strong>Белки</strong> отвечают за восстановление тканей, иммунитет и чувство насыщения. <strong>Жиры</strong> поддерживают гормональный фон и помогают усваивать жирорастворимые витамины. <strong>Углеводы</strong> обеспечивают энергию для физической активности и когнитивной работы.</p>
+                </article>
+                <article>
+                    <h3>Почему важен контроль БЖУ</h3>
+                    <p>Контроль соотношения БЖУ помогает избегать «голодных» откатов. Достаточно белка — меньше тяга к перекусам, адекватное количество жиров — стабильное настроение и здоровье кожи, а углеводы позволяют тренироваться эффективнее.</p>
+                </article>
+                <article>
+                    <h3>Как считать БЖУ</h3>
+                    <p>Используйте наш расчёт как ориентир. Ведите дневник питания, взвешивайте продукты и распределяйте калории на 3–5 приёмов пищи. При изменениях веса корректируйте рацион каждые 4–6 недель.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="instructions" id="how-to">
+            <h2>Как пользоваться калькулятором</h2>
+            <ol>
+                <li>Введите пол, возраст, вес и рост, чтобы вычислить основной обмен.</li>
+                <li>Выберите уровень физической активности для расчёта суточной нормы калорий.</li>
+                <li>Нажмите «Рассчитать», чтобы получить показатели BMR, AMR и калорийность для дефицита.</li>
+                <li>Используйте значение «Похудение (−15%)» и таблицу БЖУ, чтобы составить меню.</li>
+            </ol>
+        </section>
+
+        <section class="weight-loss-basics">
+            <h2>Основы безопасного похудения</h2>
+            <div class="weight-loss-basics__grid">
+                <article>
+                    <h3>Правильное питание</h3>
+                    <p>Включайте в рацион цельнозерновые продукты, овощи, фрукты, полезные жиры и нежирные источники белка. Следите за достаточным потреблением воды и ограничивайте быстрые углеводы.</p>
+                </article>
+                <article>
+                    <h3>Физическая активность</h3>
+                    <p>Чередуйте силовые тренировки и кардио. Даже 150 минут умеренной нагрузки в неделю помогают ускорить обмен веществ и улучшить чувствительность к инсулину.</p>
+                </article>
+                <article>
+                    <h3>Контроль прогресса</h3>
+                    <p>Фиксируйте вес, замеры и самочувствие каждую неделю. Если прогресс остановился, скорректируйте калорийность на 5–10% или добавьте движения.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <h2>FAQ: ответы на популярные вопросы</h2>
+            <div class="faq__item">
+                <h3>По какой формуле работает калькулятор?</h3>
+                <p>Мы используем формулу Миффлина–Сан Жеора для расчёта BMR. Она учитывает пол, возраст, вес и рост, что делает расчёт калорий максимально точным для большинства взрослых.</p>
+            </div>
+            <div class="faq__item">
+                <h3>Насколько точны результаты?</h3>
+                <p>Расчёт даёт ориентиры, а не строгие цифры. Реальные расходы энергии зависят от гормонального фона, состава тела и уровня стресса. Отслеживайте динамику веса и корректируйте рацион.</p>
+            </div>
+            <div class="faq__item">
+                <h3>Почему нельзя есть меньше 1200 ккал?</h3>
+                <p>Крайне низкая калорийность ведёт к дефициту витаминов и замедлению обмена веществ. Организм переходит в режим экономии, ухудшается самочувствие. Снижать калорийность ниже 1200 ккал можно только под наблюдением врача.</p>
+            </div>
+            <div class="faq__item">
+                <h3>Можно ли худеть без подсчёта калорий?</h3>
+                <p>Да, если вы контролируете размер порций и качество продуктов. Однако калькулятор калорий помогает точнее управлять дефицитом и быстрее реагировать на плато.</p>
+            </div>
+            <div class="faq__item">
+                <h3>Что делать после расчёта нормы?</h3>
+                <p>Составьте меню, распределите калории на день, подготовьте список покупок. Добавьте физическую активность и контролируйте прогресс раз в 1–2 недели.</p>
+            </div>
+        </section>
+
+        <section class="next-steps" id="next-steps">
+            <h2>Практические рекомендации</h2>
+            <div class="next-steps__grid">
+                <article>
+                    <h3>Готовые меню на 1200–1500 ккал</h3>
+                    <p>Используйте шаблон меню на неделю с балансом БЖУ: 3 основных приёма пищи и 1–2 перекуса. Включайте салаты, супы-пюре и запечённые блюда.</p>
+                </article>
+                <article>
+                    <h3>Продукты с высоким содержанием белка</h3>
+                    <p>Обратите внимание на куриную грудку, индейку, рыбу, творог, греческий йогурт, яйца и бобовые. Сочетайте животные и растительные источники для разнообразия.</p>
+                </article>
+                <article>
+                    <h3>Советы по физической активности</h3>
+                    <p>Планируйте 2–3 силовые тренировки и 2 кардио-сессии в неделю. Добавьте шаги в течение дня: 8–10 тысяч — хороший ориентир для поддержания дефицита калорий.</p>
+                </article>
+            </div>
         </section>
     </main>
+
     <footer class="footer">
-        <p>© <span id="year"></span> Ваше здоровое будущее начинается сегодня.</p>
+        <p>© <span id="year"></span> Калькулятор калорий для похудения. Все права защищены.</p>
     </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "По какой формуле работает калькулятор?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Калькулятор использует формулу Миффлина–Сан Жеора, которая учитывает пол, возраст, вес и рост для расчёта BMR."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Насколько точны результаты?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Результаты являются ориентировочными: на энергозатраты влияют гормональный фон, состав тела и ежедневная активность."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Почему нельзя есть меньше 1200 ккал?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Рацион ниже 1200 ккал может привести к дефициту витаминов и замедлению обмена веществ, поэтому снижать калорийность так сильно можно только под наблюдением врача."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Можно ли худеть без подсчёта калорий?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Можно контролировать порции и выбирать цельные продукты, но подсчёт калорий помогает точнее управлять дефицитом и быстрее реагировать на остановку прогресса."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Что делать после расчёта нормы?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Используйте полученную норму для планирования меню, составьте список покупок и регулярно отслеживайте изменения веса и самочувствия."
+                }
+            }
+        ]
+    }
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
