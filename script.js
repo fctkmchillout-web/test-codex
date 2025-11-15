@@ -1,104 +1,80 @@
-const calculatorForm = document.getElementById('calculator');
+const form = document.getElementById('calorieCalculator');
 const resultsSection = document.getElementById('results');
-const summaryParagraph = document.getElementById('summary');
-const caloriesOutput = document.getElementById('calories');
-const proteinsOutput = document.getElementById('proteins');
-const fatsOutput = document.getElementById('fats');
-const carbsOutput = document.getElementById('carbs');
-const proteinSlider = document.getElementById('protein');
-const proteinLabel = document.getElementById('proteinValue');
+const bmrField = document.getElementById('bmrValue');
+const amrField = document.getElementById('amrValue');
+const maintainField = document.getElementById('maintainCalories');
+const mildDeficitField = document.getElementById('mildDeficitCalories');
+const aggressiveDeficitField = document.getElementById('aggressiveDeficitCalories');
+const proteinAmountField = document.getElementById('proteinAmount');
+const fatAmountField = document.getElementById('fatAmount');
+const carbAmountField = document.getElementById('carbAmount');
+const safetyNotice = document.getElementById('safetyNotice');
 const yearLabel = document.getElementById('year');
 
 yearLabel.textContent = new Date().getFullYear();
 
-proteinSlider.addEventListener('input', () => {
-    proteinLabel.textContent = `${proteinSlider.value}%`;
-});
-
-const formatNumber = (value, fractionDigits = 0) =>
-    new Intl.NumberFormat('ru-RU', {
-        minimumFractionDigits: fractionDigits,
-        maximumFractionDigits: fractionDigits,
-    }).format(value);
-
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-const calculate = (data) => {
-    const { gender, age, height, weight, activity, goal, proteinShare } = data;
+const formatCalories = (value) => `${new Intl.NumberFormat('ru-RU').format(Math.round(value))} ккал`;
+const formatGrams = (value) => `${new Intl.NumberFormat('ru-RU').format(Math.max(Math.round(value), 0))} г`;
 
-    const ageValue = clamp(Number(age), 10, 100);
-    const heightValue = clamp(Number(height), 120, 250);
-    const weightValue = clamp(Number(weight), 35, 250);
+const calculateBMR = ({ gender, age, weight, height }) => {
+    const base = 10 * weight + 6.25 * height - 5 * age;
+    return gender === 'male' ? base + 5 : base - 161;
+};
 
-    const base = 10 * weightValue + 6.25 * heightValue - 5 * ageValue + (gender === 'male' ? 5 : -161);
-    const goalAdjustment = 1 + Number(goal);
-    const activityMultiplier = Number(activity);
-    const calories = Math.round(base * activityMultiplier * goalAdjustment);
-
-    const proteinPercent = Number(proteinShare) / 100;
-    const fatPercent = clamp((1 - proteinPercent) * 0.4, 0.2, 0.35);
-    const carbsPercent = 1 - proteinPercent - fatPercent;
-
-    const proteins = Math.round((calories * proteinPercent) / 4);
-    const fats = Math.round((calories * fatPercent) / 9);
-    const carbs = Math.round((calories * carbsPercent) / 4);
+const calculateMacros = ({ weight, targetCalories }) => {
+    const proteinGrams = weight * 1.6;
+    const fatGrams = weight * 0.8;
+    const caloriesFromProtein = proteinGrams * 4;
+    const caloriesFromFat = fatGrams * 9;
+    const remainingCalories = Math.max(targetCalories - caloriesFromProtein - caloriesFromFat, 0);
+    const carbGrams = remainingCalories / 4;
 
     return {
-        calories,
-        proteins,
-        fats,
-        carbs,
-        proteinPercent,
-        fatPercent,
-        carbsPercent,
+        protein: proteinGrams,
+        fat: fatGrams,
+        carbs: carbGrams,
     };
 };
 
-const showResults = (result, data) => {
-    const { calories, proteins, fats, carbs, proteinPercent, fatPercent, carbsPercent } = result;
-    const { goal } = data;
+const handleSubmit = (event) => {
+    event.preventDefault();
 
-    caloriesOutput.textContent = `${formatNumber(calories)} ккал`;
-    proteinsOutput.textContent = `${formatNumber(proteins)} г`;
-    fatsOutput.textContent = `${formatNumber(fats)} г`;
-    carbsOutput.textContent = `${formatNumber(carbs)} г`;
+    const formData = new FormData(form);
+    const gender = formData.get('gender');
+    const age = clamp(Number(formData.get('age')), 16, 80);
+    const weight = clamp(Number(formData.get('weight')), 35, 250);
+    const height = clamp(Number(formData.get('height')), 120, 220);
+    const activity = Number(formData.get('activity'));
 
-    const goalText = {
-        '-0.15': 'для снижения веса',
-        '0': 'для поддержания веса',
-        '0.15': 'для набора мышечной массы',
-    }[goal] || '';
+    if (!age || !weight || !height || !activity) {
+        form.reportValidity();
+        return;
+    }
 
-    summaryParagraph.textContent = `Макросы распределены так: белки — ${(proteinPercent * 100).toFixed(0)}%, жиры — ${(fatPercent * 100).toFixed(0)}%, углеводы — ${(carbsPercent * 100).toFixed(0)}% ${goalText}.`;
+    const bmr = calculateBMR({ gender, age, weight, height });
+    const amr = bmr * activity;
+    const maintainCalories = amr;
+    const mildDeficitCalories = amr * 0.85;
+    const aggressiveDeficitCalories = amr * 0.75;
+
+    const macros = calculateMacros({ weight, targetCalories: mildDeficitCalories });
+
+    bmrField.textContent = formatCalories(bmr);
+    amrField.textContent = formatCalories(amr);
+    maintainField.textContent = formatCalories(maintainCalories);
+    mildDeficitField.textContent = formatCalories(mildDeficitCalories);
+    aggressiveDeficitField.textContent = formatCalories(aggressiveDeficitCalories);
+
+    proteinAmountField.textContent = formatGrams(macros.protein);
+    fatAmountField.textContent = formatGrams(macros.fat);
+    carbAmountField.textContent = formatGrams(macros.carbs);
+
+    safetyNotice.hidden = mildDeficitCalories >= 1200;
 
     resultsSection.hidden = false;
     resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
-calculatorForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(calculatorForm);
-    const data = {
-        gender: formData.get('gender'),
-        age: formData.get('age'),
-        height: formData.get('height'),
-        weight: formData.get('weight'),
-        activity: formData.get('activity'),
-        goal: formData.get('goal'),
-        proteinShare: proteinSlider.value,
-    };
-
-    const isValid = ['age', 'height', 'weight'].every((field) => {
-        const value = Number(data[field]);
-        return Number.isFinite(value) && value > 0;
-    });
-
-    if (!isValid) {
-        calculatorForm.reportValidity();
-        return;
-    }
-
-    const result = calculate(data);
-    showResults(result, data);
-});
+form.addEventListener('submit', handleSubmit);
