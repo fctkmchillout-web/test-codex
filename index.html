@@ -21,8 +21,8 @@
             <form class="calculator" id="calorieCalculator" novalidate>
                 <fieldset class="calculator__group">
                     <legend>Исходные данные</legend>
-                    <div class="grid">
-                        <label>
+                    <div class="calculator__fields">
+                        <label class="field field--choice">
                             <span>Пол</span>
                             <div class="radio-group">
                                 <label class="radio">
@@ -35,19 +35,19 @@
                                 </label>
                             </div>
                         </label>
-                        <label>
+                        <label class="field">
                             <span>Возраст</span>
                             <input type="number" name="age" id="age" placeholder="лет" required min="16" max="80">
                         </label>
-                        <label>
+                        <label class="field">
                             <span>Вес</span>
                             <input type="number" name="weight" id="weight" placeholder="кг" required min="35" max="250" step="0.1">
                         </label>
-                        <label>
+                        <label class="field">
                             <span>Рост</span>
                             <input type="number" name="height" id="height" placeholder="см" required min="120" max="220">
                         </label>
-                        <label>
+                        <label class="field field--wide">
                             <span>Уровень активности</span>
                             <select name="activity" id="activity" required>
                                 <option value="1.2">Минимальная — сидячая работа, редкие прогулки</option>
@@ -90,19 +90,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Поддержание веса</td>
-                            <td id="maintainCalories">0 ккал</td>
-                            <td>Используйте, если хотите удерживать текущий вес.</td>
+                            <td data-label="Цель">Поддержание веса</td>
+                            <td data-label="Калорий" id="maintainCalories">0 ккал</td>
+                            <td data-label="Комментарий">Используйте, если хотите удерживать текущий вес.</td>
                         </tr>
                         <tr>
-                            <td>Похудение (−15%)</td>
-                            <td id="mildDeficitCalories">0 ккал</td>
-                            <td>Оптимальный дефицит калорий для постепенного снижения веса 0,5–1 кг в неделю.</td>
+                            <td data-label="Цель">Похудение (−15%)</td>
+                            <td data-label="Калорий" id="mildDeficitCalories">0 ккал</td>
+                            <td data-label="Комментарий">Оптимальный дефицит калорий для постепенного снижения веса 0,5–1 кг в неделю.</td>
                         </tr>
                         <tr class="warning-row">
-                            <td>Экстремальное похудение (−25%)</td>
-                            <td id="aggressiveDeficitCalories">0 ккал</td>
-                            <td>Используйте только под контролем специалиста — высокий риск нехватки нутриентов.</td>
+                            <td data-label="Цель">Экстремальное похудение (−25%)</td>
+                            <td data-label="Калорий" id="aggressiveDeficitCalories">0 ккал</td>
+                            <td data-label="Комментарий">Используйте только под контролем специалиста — высокий риск нехватки нутриентов.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -122,19 +122,19 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Белки</td>
-                                <td id="proteinAmount">0 г</td>
-                                <td>Поддерживают мышечную массу и снижают чувство голода.</td>
+                                <td data-label="Макронутриент">Белки</td>
+                                <td data-label="Количество" id="proteinAmount">0 г</td>
+                                <td data-label="Пояснение">Поддерживают мышечную массу и снижают чувство голода.</td>
                             </tr>
                             <tr>
-                                <td>Жиры</td>
-                                <td id="fatAmount">0 г</td>
-                                <td>Нужны для гормонального баланса и усвоения витаминов.</td>
+                                <td data-label="Макронутриент">Жиры</td>
+                                <td data-label="Количество" id="fatAmount">0 г</td>
+                                <td data-label="Пояснение">Нужны для гормонального баланса и усвоения витаминов.</td>
                             </tr>
                             <tr>
-                                <td>Углеводы</td>
-                                <td id="carbAmount">0 г</td>
-                                <td>Источник энергии для тренировок и мозга. Рекомендуем распределять между основными приёмами пищи.</td>
+                                <td data-label="Макронутриент">Углеводы</td>
+                                <td data-label="Количество" id="carbAmount">0 г</td>
+                                <td data-label="Пояснение">Источник энергии для тренировок и мозга. Рекомендуем распределять между основными приёмами пищи.</td>
                             </tr>
                         </tbody>
                     </table>
