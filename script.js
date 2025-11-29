@@ -23,6 +23,12 @@ const stickyBar = document.getElementById('stickyBar');
 const stickyCalories = document.getElementById('stickyCalories');
 const limitationsCheckbox = document.getElementById('dietLimitations');
 const limitationsField = document.getElementById('limitationsField');
+const summaryCalories = document.getElementById('summaryCalories');
+const summaryMaintain = document.getElementById('summaryMaintain');
+const summaryDeficit = document.getElementById('summaryDeficit');
+const summaryMacros = document.getElementById('summaryMacros');
+const summaryEmpty = document.getElementById('summaryEmpty');
+const calcResultCard = document.getElementById('calcResultCard');
 
 const partners = [
     {
@@ -37,6 +43,7 @@ const partners = [
         badge: 'Рекомендуем',
         program: 'Похудение 1400–1600 ккал',
         note: 'Максимальное разнообразие блюд',
+        image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80',
         url: 'https://levelkitchen.com/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=level-kitchen'
     },
     {
@@ -51,6 +58,7 @@ const partners = [
         badge: 'Эконом',
         program: 'Фитнес рацион 1200–1400 ккал',
         note: 'Быстрая доставка по городу',
+        image: 'https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?auto=format&fit=crop&w=900&q=80',
         url: 'https://yamdiet.com/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=yamdiet'
     },
     {
@@ -65,6 +73,7 @@ const partners = [
         badge: 'Премиум',
         program: 'Баланс 1700–1900 ккал',
         note: 'Органические продукты и суперфуды',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
         url: 'https://befit.ru/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=befit'
     },
     {
@@ -79,9 +88,16 @@ const partners = [
         badge: 'Белковый упор',
         program: 'Мышечный рост 2000–2200 ккал',
         note: 'Повышенное содержание белка',
+        image: 'https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?auto=format&fit=crop&w=900&q=80',
         url: 'https://myfood.ru/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=my-food'
     }
 ];
+
+const goalLabels = {
+    loss: 'Похудение',
+    maintain: 'Поддержание',
+    gain: 'Набор'
+};
 
 const menus = {
     'Level Kitchen': {
@@ -166,12 +182,12 @@ const faqs = {
 };
 
 const reviews = [
-    { name: 'Екатерина, Москва', result: '-4,5 кг за 5 недель', plan: 'Level Kitchen 1500 ккал', text: 'Еда вкусная, разнообразная, не считала калории — просто следовала готовым блюдам.' },
-    { name: 'Игорь, Санкт-Петербург', result: '-6 кг за 6 недель', plan: 'Yamdiet 1300 ккал', text: 'Экономный вариант, но при этом хватает энергии для тренировок. Удобно забрать из постамата.' },
-    { name: 'Мария, Екатеринбург', result: '-3 кг за 4 недели', plan: 'BeFit 1800 ккал', text: 'Нравится качество продуктов и упаковка. Нет чувства голода, удобно брать с собой.' },
-    { name: 'Антон, Краснодар', result: '+2 кг мышц за 8 недель', plan: 'My Food 2100 ккал', text: 'Добавил силовые тренировки и просто ел готовые блюда. Рост силовых и без готовки.' },
-    { name: 'Светлана, Казань', result: '-5,2 кг за 6 недель', plan: 'Level Kitchen 1500 ккал', text: 'Сервис сам подобрал рацион под мои калории, добавили промокод — получилось выгодно.' },
-    { name: 'Дмитрий, Новосибирск', result: '-4 кг за 5 недель', plan: 'Yamdiet 1400 ккал', text: 'Нравится что меню простое и понятное, доставка всегда вовремя.' }
+    { name: 'Екатерина, Москва', result: '-4,5 кг за 5 недель', plan: 'Level Kitchen 1500 ккал', text: 'Еда вкусная, разнообразная, не считала калории — просто следовала готовым блюдам.', avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80' },
+    { name: 'Игорь, Санкт-Петербург', result: '-6 кг за 6 недель', plan: 'Yamdiet 1300 ккал', text: 'Экономный вариант, но при этом хватает энергии для тренировок. Удобно забрать из постамата.', avatar: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=200&q=80' },
+    { name: 'Мария, Екатеринбург', result: '-3 кг за 4 недели', plan: 'BeFit 1800 ккал', text: 'Нравится качество продуктов и упаковка. Нет чувства голода, удобно брать с собой.', avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80' },
+    { name: 'Антон, Краснодар', result: '+2 кг мышц за 8 недель', plan: 'My Food 2100 ккал', text: 'Добавил силовые тренировки и просто ел готовые блюда. Рост силовых и без готовки.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80' },
+    { name: 'Светлана, Казань', result: '-5,2 кг за 6 недель', plan: 'Level Kitchen 1500 ккал', text: 'Сервис сам подобрал рацион под мои калории, добавили промокод — получилось выгодно.', avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80' },
+    { name: 'Дмитрий, Новосибирск', result: '-4 кг за 5 недель', plan: 'Yamdiet 1400 ккал', text: 'Нравится что меню простое и понятное, доставка всегда вовремя.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80' }
 ];
 
 yearLabel.textContent = new Date().getFullYear();
@@ -233,6 +249,10 @@ const renderPartnerCards = () => {
         const card = document.createElement('article');
         card.className = 'card';
         card.innerHTML = `
+            <div class="card__media">
+                <img src="${partner.image}" alt="${partner.name} меню" loading="lazy">
+                <span class="card__pill card__pill--${partner.goal}">${goalLabels[partner.goal]}</span>
+            </div>
             <div class="card__top">
                 <div class="card__logo">${partner.name}</div>
                 <span class="badge">${partner.badge}</span>
@@ -297,9 +317,14 @@ const renderReviews = () => {
         const card = document.createElement('article');
         card.className = 'review';
         card.innerHTML = `
-            <p class="review__title">${review.result}</p>
-            <p class="review__meta">${review.name}</p>
-            <p class="subtitle">${review.plan}</p>
+            <div class="review__header">
+                <img class="review__avatar" src="${review.avatar}" alt="${review.name}" loading="lazy">
+                <div class="review__info">
+                    <p class="review__title">${review.result}</p>
+                    <p class="review__meta">${review.name}</p>
+                    <p class="subtitle">${review.plan}</p>
+                </div>
+            </div>
             <p>${review.text}</p>
         `;
         reviewGrid.appendChild(card);
@@ -323,8 +348,7 @@ const renderFaq = (category) => {
 const updateStickyBar = () => {
     if (!state.targetCalories) return;
     stickyCalories.textContent = formatCalories(state.targetCalories);
-    const shouldShow = window.innerWidth <= 900;
-    stickyBar.hidden = !shouldShow;
+    stickyBar.hidden = false;
 };
 
 const handleSubmit = (event) => {
@@ -360,6 +384,13 @@ const handleSubmit = (event) => {
     proteinAmountField.textContent = formatGrams(macros.protein);
     fatAmountField.textContent = formatGrams(macros.fat);
     carbAmountField.textContent = formatGrams(macros.carbs);
+
+    summaryCalories.textContent = formatCalories(mildDeficitCalories);
+    summaryMaintain.textContent = formatCalories(maintainCalories);
+    summaryDeficit.textContent = formatCalories(mildDeficitCalories);
+    summaryMacros.textContent = `${formatGrams(macros.protein)} / ${formatGrams(macros.fat)} / ${formatGrams(macros.carbs)}`;
+    calcResultCard.classList.add('filled');
+    summaryEmpty.hidden = true;
 
     safetyNotice.hidden = mildDeficitCalories >= 1200;
 

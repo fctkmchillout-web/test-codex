@@ -14,20 +14,53 @@
     <main class="page">
         <section class="hero" id="top">
             <div class="hero__intro">
-                <p class="eyebrow">fit-calc.ru + доставка ПП</p>
-                <h1>Рассчитайте норму калорий и получите готовый рацион на неделю</h1>
-                <p class="subtitle">Подбор доставок правильного питания: Level Kitchen, Yamdiet, BeFit, My Food.</p>
-                <ul class="hero__bullets">
-                    <li>Подбор рационов сразу под ваш дефицит калорий</li>
-                    <li>Сравнение сервисов и быстрый переход по UTM-ссылкам</li>
-                    <li>Промокоды и персональный подбор меню</li>
+                <div class="hero__tag">Персональный расчёт</div>
+                <h1>Рассчитайте норму калорий<br>и получите готовый рацион</h1>
+                <p class="hero__lead">Узнайте свою дневную норму калорий за 30 секунд и получите персональные рекомендации по питанию.</p>
+                <ul class="hero__points">
+                    <li>Подбор рационов под ваш дефицит</li>
+                    <li>Сравнение сервисов и быстрый заказ</li>
+                    <li>Промокоды и готовые программы</li>
                 </ul>
-                <div class="hero__actions">
-                    <a class="button" href="#calculator">Рассчитать и подобрать рацион</a>
-                    <a class="link" href="#partner-plans">Уже знаете свою норму? Подобрать рацион без расчёта</a>
+                <div class="hero__cta-row">
+                    <a class="button" href="#calculator">Рассчитать</a>
+                    <a class="button button--ghost" href="#partner-plans">Выбрать меню</a>
+                </div>
+                <div class="hero__chips">
+                    <span class="chip">🔻 Дефицит калорий</span>
+                    <span class="chip">⚖️ Баланс БЖУ</span>
+                    <span class="chip">🍽️ Готовые рационы</span>
                 </div>
             </div>
             <div class="hero__visual" aria-hidden="true">
+                <div class="hero__stat-card">
+                    <div class="hero__stat-top">
+                        <div>
+                            <p class="eyebrow">Ваша норма</p>
+                            <p class="hero__stat-value">1 850</p>
+                            <p class="hero__stat-caption">ккал в день</p>
+                        </div>
+                        <div class="pill">-15%</div>
+                    </div>
+                    <div class="hero__stat-macros">
+                        <div>
+                            <span>138g</span>
+                            <small>Белки</small>
+                        </div>
+                        <div>
+                            <span>62g</span>
+                            <small>Жиры</small>
+                        </div>
+                        <div>
+                            <span>171g</span>
+                            <small>Углеводы</small>
+                        </div>
+                    </div>
+                </div>
+                <figure class="hero__photo">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Сервировка со здоровыми блюдами" loading="lazy">
+                    <figcaption>Крупные фото реальных сетов питания от партнёров</figcaption>
+                </figure>
                 <div class="screen-mock">
                     <p class="screen-mock__title">Пример меню</p>
                     <div class="screen-mock__item">
@@ -48,15 +81,20 @@
         </section>
 
         <section class="calculator-block" id="calculator">
-            <header class="section-header">
-                <p class="eyebrow">Шаг 1</p>
+            <header class="section-header section-header--center">
                 <h2>Узнайте свою норму калорий</h2>
-                <p class="subtitle">После расчёта покажем готовые рационы под ваш дефицит калорий.</p>
+                <p class="subtitle">Заполните форму ниже, чтобы получить точный расчёт вашей дневной нормы калорий и рекомендации по БЖУ.</p>
             </header>
-            <form class="calculator" id="calorieCalculator" novalidate>
-                <fieldset class="calculator__group">
-                    <legend>Исходные данные</legend>
-                    <div class="calculator__fields">
+            <div class="calculator-shell">
+                <form class="calc-card calc-card--form" id="calorieCalculator" novalidate>
+                    <div class="calc-card__header">
+                        <div class="calc-card__icon" aria-hidden="true">⚙️</div>
+                        <div>
+                            <p class="eyebrow">Параметры</p>
+                            <h3>Подберите персональный расчёт</h3>
+                        </div>
+                    </div>
+                    <div class="calculator__fields calculator__fields--split">
                         <label class="field field--choice">
                             <span>Пол</span>
                             <div class="radio-group">
@@ -92,11 +130,58 @@
                                 <option value="1.9">Очень высокая — тяжёлый физический труд или две тренировки в день</option>
                             </select>
                         </label>
+                        <label class="field field--wide">
+                            <span>Цель</span>
+                            <div class="radio-group radio-group--pill">
+                                <label class="radio">
+                                    <input type="radio" name="goal" value="loss" checked>
+                                    <span>Похудение</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="goal" value="maintain">
+                                    <span>Поддержание</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="goal" value="gain">
+                                    <span>Набрать массу</span>
+                                </label>
+                            </div>
+                        </label>
                     </div>
-                </fieldset>
-                <button type="submit" class="button">Рассчитать и подобрать рацион</button>
-                <p class="disclaimer">Важно: любая программа снижения веса должна согласовываться с врачом или диетологом. Не опускайтесь ниже безопасной нормы калорий.</p>
-            </form>
+                    <button type="submit" class="button button--full">Рассчитать норму калорий</button>
+                    <p class="disclaimer">Важно: любая программа снижения веса должна согласовываться с врачом или диетологом. Не опускайтесь ниже безопасной нормы калорий.</p>
+                </form>
+                <div class="calc-card calc-card--result" id="calcResultCard" aria-live="polite">
+                    <div class="calc-card__header">
+                        <div class="calc-card__icon calc-card__icon--accent" aria-hidden="true">📊</div>
+                        <div>
+                            <p class="eyebrow">Результаты</p>
+                            <h3>Заполните форму слева</h3>
+                            <p class="subtitle">Здесь появится ваша норма калорий и подборка БЖУ.</p>
+                        </div>
+                    </div>
+                    <div class="calc-summary" id="calcSummary">
+                        <p class="calc-summary__label">Рекомендуемая калорийность</p>
+                        <p class="calc-summary__value" id="summaryCalories">—</p>
+                        <p class="calc-summary__meta">На основе вашей анкеты</p>
+                    </div>
+                    <div class="calc-metrics">
+                        <div class="calc-metric">
+                            <span class="calc-metric__label">Поддержание</span>
+                            <span class="calc-metric__value" id="summaryMaintain">—</span>
+                        </div>
+                        <div class="calc-metric">
+                            <span class="calc-metric__label">Дефицит (−15%)</span>
+                            <span class="calc-metric__value" id="summaryDeficit">—</span>
+                        </div>
+                        <div class="calc-metric">
+                            <span class="calc-metric__label">БЖУ</span>
+                            <span class="calc-metric__value" id="summaryMacros">—</span>
+                        </div>
+                    </div>
+                    <p class="calc-empty" id="summaryEmpty">Результаты появятся здесь</p>
+                </div>
+            </div>
         </section>
 
         <section class="results" id="results" hidden>
@@ -219,6 +304,16 @@
                 </label>
             </div>
             <div class="cards" id="partnerCards"></div>
+            <div class="accent-gallery" aria-hidden="true">
+                <figure class="accent-gallery__item">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=80" alt="Три тарелки с полезными блюдами" loading="lazy">
+                    <figcaption>Крупный сет на три приёма пищи — баланс БЖУ</figcaption>
+                </figure>
+                <figure class="accent-gallery__item">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Зелёный салат и смузи" loading="lazy">
+                    <figcaption>Акцентные фото помогают увидеть реальные порции</figcaption>
+                </figure>
+            </div>
         </section>
 
         <section class="comparison" id="comparison">
@@ -241,40 +336,41 @@
                     <tbody id="comparisonBody"></tbody>
                 </table>
             </div>
+            <div class="cta-inline">
+                <div>
+                    <h3>Не хочется вчитываться в таблицы?</h3>
+                    <p class="subtitle">Выберите готовый рацион — мы сразу покажем ближайшие по калориям программы.</p>
+                </div>
+                <a class="button" href="#partner-plans">Подобрать рацион за 1 минуту</a>
+            </div>
         </section>
 
         <section class="how-it-works" id="how">
-            <header class="section-header">
-                <h2>Как перейти от расчёта калорий к готовой еде</h2>
+            <header class="section-header section-header--center">
+                <h2>Как это работает</h2>
+                <p class="subtitle">Четыре простых шага к правильному питанию без подсчёта калорий</p>
             </header>
-            <div class="steps">
-                <article class="step">
-                    <div class="step__icon">1</div>
-                    <h3>Рассчитываете норму</h3>
-                    <p>Заполняете анкету и получаете безопасный дефицит калорий.</p>
+            <div class="process">
+                <article class="process__item">
+                    <div class="process__icon" aria-hidden="true">①</div>
+                    <h3>Рассчитайте норму</h3>
+                    <p>Введите свои параметры и получите точный расчёт калорий и БЖУ.</p>
                 </article>
-                <article class="step">
-                    <div class="step__icon">2</div>
-                    <h3>Подбираете рацион</h3>
-                    <p>Сервис предлагает готовые программы доставки под ваши цели.</p>
+                <article class="process__item">
+                    <div class="process__icon" aria-hidden="true">②</div>
+                    <h3>Выберите рацион</h3>
+                    <p>Сравните сервисы доставки и выберите подходящий под вашу норму.</p>
                 </article>
-                <article class="step">
-                    <div class="step__icon">3</div>
-                    <h3>Оформляете доставку</h3>
-                    <p>Переходите на сайт партнёра по UTM-ссылке и оформляете заказ.</p>
+                <article class="process__item">
+                    <div class="process__icon" aria-hidden="true">③</div>
+                    <h3>Оформите доставку</h3>
+                    <p>Забронируйте готовые блюда с доставкой на дом или в офис.</p>
                 </article>
-                <article class="step">
-                    <div class="step__icon">4</div>
-                    <h3>Получаете готовую еду</h3>
-                    <p>Меню от нутрициологов, 5–7 дней без готовки и подсчёта калорий.</p>
+                <article class="process__item">
+                    <div class="process__icon" aria-hidden="true">④</div>
+                    <h3>Питайтесь правильно</h3>
+                    <p>Получайте готовые рационы и наблюдайте результаты.</p>
                 </article>
-            </div>
-            <div class="cta-bar">
-                <div>
-                    <h3>Готовы попробовать?</h3>
-                    <p>Выберите рацион под ваши калории и получите промокоды.</p>
-                </div>
-                <a class="button" href="#partner-plans">Подобрать рацион под мои калории</a>
             </div>
         </section>
 
@@ -296,6 +392,13 @@
                 <h2>Результаты клиентов с готовыми рационами</h2>
             </header>
             <div class="review-grid" id="reviewGrid"></div>
+            <div class="cta-inline cta-inline--light">
+                <div>
+                    <h3>Хотите повторить их прогресс?</h3>
+                    <p class="subtitle">Сохраняем калории и вкусы, подстраиваем под вашу цель.</p>
+                </div>
+                <a class="button" href="#partner-plans">Подобрать рацион</a>
+            </div>
             <div class="center">
                 <a class="button" href="#partner-plans">Хочу такой же результат → подобрать рацион</a>
             </div>
@@ -321,6 +424,28 @@
             </div>
             <p class="subtitle">Можно готовить по нашим рекомендациям самому, но если нет времени — выберите готовые рационы.</p>
             <a class="button" href="#partner-plans">Выбрать рацион без готовки</a>
+            <div class="trust__badges" aria-label="Социальное доказательство">
+                <div class="trust__badge">
+                    <strong>35 000+</strong>
+                    <span>подборов рационов</span>
+                </div>
+                <div class="trust__badge">
+                    <strong>4.9/5</strong>
+                    <span>средняя оценка клиентов</span>
+                </div>
+                <div class="trust__badge">
+                    <strong>6 лет</strong>
+                    <span>работаем на рынке ПП</span>
+                </div>
+            </div>
+            <div class="partner-logos partner-logos--wide">
+                <span>Level Kitchen</span>
+                <span>Yamdiet</span>
+                <span>BeFit</span>
+                <span>My Food</span>
+                <span>Delivery Club</span>
+                <span>Samokat</span>
+            </div>
         </section>
 
         <section class="faq" id="faq">
