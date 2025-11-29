@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Онлайн-калькулятор калорий для похудения</title>
-    <meta name="description" content="Рассчитайте суточную норму калорий, дефицит для похудения и баланс БЖУ по формуле Миффлина-Сан Жеора. Интерактивный калькулятор калорий онлайн с экспертными рекомендациями." />
+    <title>Fit Calc — подбор готовых рационов под вашу норму калорий</title>
+    <meta name="description" content="Рассчитайте свою норму калорий и получите готовые рационы от Level Kitchen, Yamdiet, BeFit и My Food с UTM-ссылками и подборкой программ под ваш дефицит." />
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,12 +12,47 @@
 </head>
 <body>
     <main class="page">
-        <section class="hero" id="calculator-block">
+        <section class="hero" id="top">
             <div class="hero__intro">
-                <h1>Онлайн-калькулятор калорий для похудения</h1>
-                <p class="subtitle">Рассчитайте свою суточную норму калорий и баланс БЖУ для эффективного и безопасного снижения веса.</p>
-                <p class="note">Инструмент использует формулу Миффлина–Сан Жеора для расчёта BMR и учитывает ваш уровень активности, чтобы определить оптимальный дефицит калорий.</p>
+                <p class="eyebrow">fit-calc.ru + доставка ПП</p>
+                <h1>Рассчитайте норму калорий и получите готовый рацион на неделю</h1>
+                <p class="subtitle">Подбор доставок правильного питания: Level Kitchen, Yamdiet, BeFit, My Food.</p>
+                <ul class="hero__bullets">
+                    <li>Подбор рационов сразу под ваш дефицит калорий</li>
+                    <li>Сравнение сервисов и быстрый переход по UTM-ссылкам</li>
+                    <li>Промокоды и персональный подбор меню</li>
+                </ul>
+                <div class="hero__actions">
+                    <a class="button" href="#calculator">Рассчитать и подобрать рацион</a>
+                    <a class="link" href="#partner-plans">Уже знаете свою норму? Подобрать рацион без расчёта</a>
+                </div>
             </div>
+            <div class="hero__visual" aria-hidden="true">
+                <div class="screen-mock">
+                    <p class="screen-mock__title">Пример меню</p>
+                    <div class="screen-mock__item">
+                        <span>Завтрак</span>
+                        <strong>Омлет с овощами — 320 ккал</strong>
+                    </div>
+                    <div class="screen-mock__item">
+                        <span>Обед</span>
+                        <strong>Лосось с киноа — 450 ккал</strong>
+                    </div>
+                    <div class="screen-mock__item">
+                        <span>Ужин</span>
+                        <strong>Тайская курица — 380 ккал</strong>
+                    </div>
+                    <p class="screen-mock__footer">Готовые рационы от партнёров</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="calculator-block" id="calculator">
+            <header class="section-header">
+                <p class="eyebrow">Шаг 1</p>
+                <h2>Узнайте свою норму калорий</h2>
+                <p class="subtitle">После расчёта покажем готовые рационы под ваш дефицит калорий.</p>
+            </header>
             <form class="calculator" id="calorieCalculator" novalidate>
                 <fieldset class="calculator__group">
                     <legend>Исходные данные</legend>
@@ -59,13 +94,16 @@
                         </label>
                     </div>
                 </fieldset>
-                <button type="submit" class="button">Рассчитать</button>
+                <button type="submit" class="button">Рассчитать и подобрать рацион</button>
                 <p class="disclaimer">Важно: любая программа снижения веса должна согласовываться с врачом или диетологом. Не опускайтесь ниже безопасной нормы калорий.</p>
             </form>
         </section>
 
         <section class="results" id="results" hidden>
-            <h2>Результаты расчёта и дефицит калорий</h2>
+            <header class="section-header">
+                <p class="eyebrow">Шаг 2</p>
+                <h2>Результаты расчёта и дефицит калорий</h2>
+            </header>
             <div class="results__grid">
                 <article class="result-card">
                     <h3>BMR — основной обмен</h3>
@@ -75,9 +113,17 @@
                 <article class="result-card">
                     <h3>AMR — суточная норма</h3>
                     <p class="result-value" id="amrValue">0 ккал</p>
-                    <p class="result-desc">BMR с учётом вашей активности — это ориентир для поддержания текущего веса.</p>
+                    <p class="result-desc">BMR с учётом вашей активности — ориентир для поддержания текущего веса.</p>
+                </article>
+                <article class="result-card result-card--accent">
+                    <h3>Рекомендуемая калорийность для похудения</h3>
+                    <p class="result-value" id="recommendedCalories">0 ккал</p>
+                    <p class="result-desc">Комфортный дефицит, который позволит терять 0,5–1 кг в неделю без жёстких диет.</p>
                 </article>
             </div>
+            <p class="results__note">Под вашу норму мы подобрали готовые рационы от партнёров.</p>
+            <a class="button button--ghost" href="#partner-plans">Смотреть готовые рационы</a>
+
             <div class="table-wrapper">
                 <table class="result-table">
                     <caption>Сколько калорий нужно чтобы похудеть</caption>
@@ -146,117 +192,212 @@
             </div>
         </section>
 
-        <section class="interpretation">
-            <h2>Что означают эти цифры?</h2>
-            <div class="interpretation__grid">
-                <article>
-                    <h3>Ваш основной обмен (BMR)</h3>
-                    <p>Основной обмен — это количество энергии, которое организм расходует в состоянии покоя на поддержание жизненно важных функций: дыхание, работу сердца, терморегуляцию. Формула Миффлина–Сан Жеора считается наиболее точной для расчёта BMR у современных людей.</p>
-                </article>
-                <article>
-                    <h3>Суточная норма с учётом активности (AMR)</h3>
-                    <p>AMR учитывает ваш образ жизни и уровень физической активности. Если вести пищевой дневник и придерживаться этой нормы, вес будет стабильным. При повышении активности потребность в калориях возрастает.</p>
-                </article>
-                <article>
-                    <h3>Дефицит калорий</h3>
-                    <p>Дефицит — это разница между потреблённой и потраченной энергией. Оптимально выбирать дефицит 10–20%: так жир уходит постепенно, а организм успевает адаптироваться без потери мышц и дефицита витаминов.</p>
-                </article>
+        <section class="partner-plans" id="partner-plans">
+            <header class="section-header">
+                <p class="eyebrow">Шаг 3</p>
+                <h2>Готовые рационы под вашу норму калорий</h2>
+                <p class="subtitle">Программы в диапазоне <span id="calorieRange">—</span> ккал/сутки.</p>
+            </header>
+            <div class="filters">
+                <label class="filter">
+                    <span>Цель</span>
+                    <select id="goalFilter">
+                        <option value="all">Все цели</option>
+                        <option value="loss">Похудение</option>
+                        <option value="maintain">Поддержание</option>
+                        <option value="gain">Набор</option>
+                    </select>
+                </label>
+                <label class="filter">
+                    <span>Бюджет</span>
+                    <select id="budgetFilter">
+                        <option value="all">Любой</option>
+                        <option value="economy">Эконом</option>
+                        <option value="balance">Баланс</option>
+                        <option value="premium">Премиум</option>
+                    </select>
+                </label>
+            </div>
+            <div class="cards" id="partnerCards"></div>
+        </section>
+
+        <section class="comparison" id="comparison">
+            <header class="section-header">
+                <h2>Сравните сервисы и выберите свой</h2>
+            </header>
+            <div class="table-wrapper table-wrapper--scroll">
+                <table class="comparison-table" aria-label="Сравнение сервисов доставки ПП">
+                    <thead>
+                        <tr>
+                            <th>Сервис</th>
+                            <th>Калорийность под вас</th>
+                            <th>Цена от/день</th>
+                            <th>Приёмов пищи</th>
+                            <th>Для кого подходит</th>
+                            <th>Особенности</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonBody"></tbody>
+                </table>
             </div>
         </section>
 
-        <section class="education">
-            <h2>Норма БЖУ для похудения</h2>
-            <p>Чтобы похудеть без вреда для здоровья, важно не только сократить калории, но и сохранить баланс макронутриентов. При снижении веса белок должен оставаться на высоком уровне, а жиры — не опускаться ниже 0,8 г/кг. Остаток калорий заполняем сложными углеводами и клетчаткой.</p>
-            <div class="education__grid">
-                <article>
-                    <h3>Роль белков, жиров и углеводов</h3>
-                    <p><strong>Белки</strong> отвечают за восстановление тканей, иммунитет и чувство насыщения. <strong>Жиры</strong> поддерживают гормональный фон и помогают усваивать жирорастворимые витамины. <strong>Углеводы</strong> обеспечивают энергию для физической активности и когнитивной работы.</p>
+        <section class="how-it-works" id="how">
+            <header class="section-header">
+                <h2>Как перейти от расчёта калорий к готовой еде</h2>
+            </header>
+            <div class="steps">
+                <article class="step">
+                    <div class="step__icon">1</div>
+                    <h3>Рассчитываете норму</h3>
+                    <p>Заполняете анкету и получаете безопасный дефицит калорий.</p>
                 </article>
-                <article>
-                    <h3>Почему важен контроль БЖУ</h3>
-                    <p>Контроль соотношения БЖУ помогает избегать «голодных» откатов. Достаточно белка — меньше тяга к перекусам, адекватное количество жиров — стабильное настроение и здоровье кожи, а углеводы позволяют тренироваться эффективнее.</p>
+                <article class="step">
+                    <div class="step__icon">2</div>
+                    <h3>Подбираете рацион</h3>
+                    <p>Сервис предлагает готовые программы доставки под ваши цели.</p>
                 </article>
-                <article>
-                    <h3>Как считать БЖУ</h3>
-                    <p>Используйте наш расчёт как ориентир. Ведите дневник питания, взвешивайте продукты и распределяйте калории на 3–5 приёмов пищи. При изменениях веса корректируйте рацион каждые 4–6 недель.</p>
+                <article class="step">
+                    <div class="step__icon">3</div>
+                    <h3>Оформляете доставку</h3>
+                    <p>Переходите на сайт партнёра по UTM-ссылке и оформляете заказ.</p>
                 </article>
+                <article class="step">
+                    <div class="step__icon">4</div>
+                    <h3>Получаете готовую еду</h3>
+                    <p>Меню от нутрициологов, 5–7 дней без готовки и подсчёта калорий.</p>
+                </article>
+            </div>
+            <div class="cta-bar">
+                <div>
+                    <h3>Готовы попробовать?</h3>
+                    <p>Выберите рацион под ваши калории и получите промокоды.</p>
+                </div>
+                <a class="button" href="#partner-plans">Подобрать рацион под мои калории</a>
             </div>
         </section>
 
-        <section class="instructions" id="how-to">
-            <h2>Как пользоваться калькулятором</h2>
-            <ol>
-                <li>Введите пол, возраст, вес и рост, чтобы вычислить основной обмен.</li>
-                <li>Выберите уровень физической активности для расчёта суточной нормы калорий.</li>
-                <li>Нажмите «Рассчитать», чтобы получить показатели BMR, AMR и калорийность для дефицита.</li>
-                <li>Используйте значение «Похудение (−15%)» и таблицу БЖУ, чтобы составить меню.</li>
-            </ol>
+        <section class="menu" id="menu">
+            <header class="section-header">
+                <h2>Как выглядит ваш день с готовым рационом</h2>
+            </header>
+            <div class="tabs" role="tablist" aria-label="Меню партнёров">
+                <button class="tab tab--active" data-tab="Level Kitchen" role="tab">Level Kitchen</button>
+                <button class="tab" data-tab="Yamdiet" role="tab">Yamdiet</button>
+                <button class="tab" data-tab="BeFit" role="tab">BeFit</button>
+                <button class="tab" data-tab="My Food" role="tab">My Food</button>
+            </div>
+            <div class="tab-content" id="tabContent"></div>
         </section>
 
-        <section class="weight-loss-basics">
-            <h2>Основы безопасного похудения</h2>
-            <div class="weight-loss-basics__grid">
-                <article>
-                    <h3>Правильное питание</h3>
-                    <p>Включайте в рацион цельнозерновые продукты, овощи, фрукты, полезные жиры и нежирные источники белка. Следите за достаточным потреблением воды и ограничивайте быстрые углеводы.</p>
+        <section class="reviews" id="reviews">
+            <header class="section-header">
+                <h2>Результаты клиентов с готовыми рационами</h2>
+            </header>
+            <div class="review-grid" id="reviewGrid"></div>
+            <div class="center">
+                <a class="button" href="#partner-plans">Хочу такой же результат → подобрать рацион</a>
+            </div>
+        </section>
+
+        <section class="trust" id="trust">
+            <header class="section-header">
+                <h2>Безопасное снижение веса без жёстких диет</h2>
+            </header>
+            <div class="trust__grid">
+                <article class="trust__item">
+                    <h3>Безопасный дефицит</h3>
+                    <p>Рассчитываем калории с учётом пола, возраста и активности, чтобы не выходить за рамки здорового снижения веса.</p>
                 </article>
-                <article>
-                    <h3>Физическая активность</h3>
-                    <p>Чередуйте силовые тренировки и кардио. Даже 150 минут умеренной нагрузки в неделю помогают ускорить обмен веществ и улучшить чувствительность к инсулину.</p>
+                <article class="trust__item">
+                    <h3>Меню от нутрициологов</h3>
+                    <p>Партнёры разрабатывают программы с балансом БЖУ и сезонными продуктами, без монодиет.</p>
                 </article>
-                <article>
+                <article class="trust__item">
                     <h3>Контроль прогресса</h3>
-                    <p>Фиксируйте вес, замеры и самочувствие каждую неделю. Если прогресс остановился, скорректируйте калорийность на 5–10% или добавьте движения.</p>
+                    <p>Сравнивайте планы, выбирайте удобный и корректируйте калории каждые 4–6 недель по результатам.</p>
                 </article>
             </div>
+            <p class="subtitle">Можно готовить по нашим рекомендациям самому, но если нет времени — выберите готовые рационы.</p>
+            <a class="button" href="#partner-plans">Выбрать рацион без готовки</a>
         </section>
 
         <section class="faq" id="faq">
-            <h2>FAQ: ответы на популярные вопросы</h2>
-            <div class="faq__item">
-                <h3>По какой формуле работает калькулятор?</h3>
-                <p>Мы используем формулу Миффлина–Сан Жеора для расчёта BMR. Она учитывает пол, возраст, вес и рост, что делает расчёт калорий максимально точным для большинства взрослых.</p>
+            <header class="section-header">
+                <h2>FAQ</h2>
+            </header>
+            <div class="tabs tabs--secondary" role="tablist" aria-label="FAQ категории">
+                <button class="tab tab--active" data-tab="delivery" role="tab">О доставке питания</button>
+                <button class="tab" data-tab="calculator" role="tab">О калькуляторе</button>
             </div>
-            <div class="faq__item">
-                <h3>Насколько точны результаты?</h3>
-                <p>Расчёт даёт ориентиры, а не строгие цифры. Реальные расходы энергии зависят от гормонального фона, состава тела и уровня стресса. Отслеживайте динамику веса и корректируйте рацион.</p>
-            </div>
-            <div class="faq__item">
-                <h3>Почему нельзя есть меньше 1200 ккал?</h3>
-                <p>Крайне низкая калорийность ведёт к дефициту витаминов и замедлению обмена веществ. Организм переходит в режим экономии, ухудшается самочувствие. Снижать калорийность ниже 1200 ккал можно только под наблюдением врача.</p>
-            </div>
-            <div class="faq__item">
-                <h3>Можно ли худеть без подсчёта калорий?</h3>
-                <p>Да, если вы контролируете размер порций и качество продуктов. Однако калькулятор калорий помогает точнее управлять дефицитом и быстрее реагировать на плато.</p>
-            </div>
-            <div class="faq__item">
-                <h3>Что делать после расчёта нормы?</h3>
-                <p>Составьте меню, распределите калории на день, подготовьте список покупок. Добавьте физическую активность и контролируйте прогресс раз в 1–2 недели.</p>
-            </div>
+            <div class="faq__content" id="faqContent"></div>
         </section>
 
-        <section class="next-steps" id="next-steps">
-            <h2>Практические рекомендации</h2>
-            <div class="next-steps__grid">
-                <article>
-                    <h3>Готовые меню на 1200–1500 ккал</h3>
-                    <p>Используйте шаблон меню на неделю с балансом БЖУ: 3 основных приёма пищи и 1–2 перекуса. Включайте салаты, супы-пюре и запечённые блюда.</p>
-                </article>
-                <article>
-                    <h3>Продукты с высоким содержанием белка</h3>
-                    <p>Обратите внимание на куриную грудку, индейку, рыбу, творог, греческий йогурт, яйца и бобовые. Сочетайте животные и растительные источники для разнообразия.</p>
-                </article>
-                <article>
-                    <h3>Советы по физической активности</h3>
-                    <p>Планируйте 2–3 силовые тренировки и 2 кардио-сессии в неделю. Добавьте шаги в течение дня: 8–10 тысяч — хороший ориентир для поддержания дефицита калорий.</p>
-                </article>
+        <section class="lead" id="lead">
+            <header class="section-header">
+                <h2>Получить подборку меню и промокоды</h2>
+                <p class="subtitle">Оставьте контакты — вышлем 2–3 варианта меню на вашу норму калорий и действующие скидки от партнёров.</p>
+            </header>
+            <form class="lead__form">
+                <label class="field">
+                    <span>Имя</span>
+                    <input type="text" name="name" placeholder="Как к вам обращаться" required>
+                </label>
+                <label class="field">
+                    <span>Контакты</span>
+                    <div class="contact-input">
+                        <select name="contactType">
+                            <option value="email">Email</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="telegram">Telegram</option>
+                        </select>
+                        <input type="text" name="contactValue" placeholder="example@mail.ru или @username" required>
+                    </div>
+                </label>
+                <label class="field field--checkbox">
+                    <input type="checkbox" name="dietLimitations" id="dietLimitations">
+                    <span>Есть ограничения по питанию</span>
+                </label>
+                <label class="field field--wide" id="limitationsField" hidden>
+                    <span>Расскажите о ваших ограничениях</span>
+                    <textarea name="limitations" rows="3" placeholder="Без глютена, без лактозы, аллергии..."></textarea>
+                </label>
+                <button type="submit" class="button">Получить подборку меню</button>
+            </form>
+        </section>
+
+        <section class="final-offer" id="final">
+            <div class="final-offer__content">
+                <h2>Подберите рацион и начните питаться правильно уже завтра</h2>
+                <p>Рассчитайте калории или сразу переходите к подбору программ доставки.</p>
+                <div class="hero__actions">
+                    <a class="button" href="#calculator">Рассчитать и подобрать рацион</a>
+                    <a class="button button--ghost" href="#partner-plans">Уже знаю свою норму → подобрать рацион</a>
+                </div>
             </div>
+            <footer class="footer">
+                <div class="footer__brand">
+                    <strong>Fit Calc</strong>
+                    <p>© <span id="year"></span> Все права защищены.</p>
+                </div>
+                <div class="footer__links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <div class="partner-logos">
+                        <span>Level Kitchen</span>
+                        <span>Yamdiet</span>
+                        <span>BeFit</span>
+                        <span>My Food</span>
+                    </div>
+                </div>
+            </footer>
         </section>
     </main>
 
-    <footer class="footer">
-        <p>© <span id="year"></span> Калькулятор калорий для похудения. Все права защищены.</p>
-    </footer>
+    <div class="sticky-bar" id="stickyBar" hidden>
+        <span>Ваша норма: <strong id="stickyCalories">0 ккал</strong></span>
+        <a class="button" href="#partner-plans">Подобрать рацион</a>
+    </div>
 
     <script type="application/ld+json">
     {
