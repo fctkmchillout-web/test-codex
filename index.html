@@ -1,578 +1,292 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fit Calc — подбор готовых рационов под вашу норму калорий</title>
-    <meta name="description" content="Рассчитайте свою норму калорий и получите готовые рационы от Level Kitchen, Yamdiet, BeFit и My Food с UTM-ссылками и подборкой программ под ваш дефицит." />
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fit Calc — подбор готовых рационов под вашу норму калорий</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="page">
-        <section class="hero" id="top">
-            <div class="hero__intro">
-                <div class="hero__tag">Персональный расчёт</div>
-                <h1>Рассчитайте норму калорий<br>и получите готовый рацион</h1>
-                <p class="hero__lead">Узнайте свою дневную норму калорий за 30 секунд и получите персональные рекомендации по питанию.</p>
-                <ul class="hero__points">
-                    <li>Подбор рационов под ваш дефицит</li>
-                    <li>Сравнение сервисов и быстрый заказ</li>
-                    <li>Промокоды и готовые программы</li>
-                </ul>
-                <div class="hero__cta-row">
-                    <a class="button" href="#calculator">Рассчитать</a>
-                    <a class="button button--ghost" href="#partner-plans">Выбрать меню</a>
-                </div>
-                <div class="hero__chips">
-                    <span class="chip">🔻 Дефицит калорий</span>
-                    <span class="chip">⚖️ Баланс БЖУ</span>
-                    <span class="chip">🍽️ Готовые рационы</span>
-                </div>
-            </div>
-            <div class="hero__visual" aria-hidden="true">
-                <div class="hero__stat-card">
-                    <div class="hero__stat-top">
-                        <div>
-                            <p class="eyebrow">Ваша норма</p>
-                            <p class="hero__stat-value">1 850</p>
-                            <p class="hero__stat-caption">ккал в день</p>
-                        </div>
-                        <div class="pill">-15%</div>
-                    </div>
-                    <div class="hero__stat-macros">
-                        <div>
-                            <span>138g</span>
-                            <small>Белки</small>
-                        </div>
-                        <div>
-                            <span>62g</span>
-                            <small>Жиры</small>
-                        </div>
-                        <div>
-                            <span>171g</span>
-                            <small>Углеводы</small>
-                        </div>
-                    </div>
-                </div>
-                <figure class="hero__photo">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Сервировка со здоровыми блюдами" loading="lazy">
-                    <figcaption>Крупные фото реальных сетов питания от партнёров</figcaption>
-                </figure>
-                <div class="screen-mock">
-                    <p class="screen-mock__title">Пример меню</p>
-                    <div class="screen-mock__item">
-                        <span>Завтрак</span>
-                        <strong>Омлет с овощами — 320 ккал</strong>
-                    </div>
-                    <div class="screen-mock__item">
-                        <span>Обед</span>
-                        <strong>Лосось с киноа — 450 ккал</strong>
-                    </div>
-                    <div class="screen-mock__item">
-                        <span>Ужин</span>
-                        <strong>Тайская курица — 380 ккал</strong>
-                    </div>
-                    <p class="screen-mock__footer">Готовые рационы от партнёров</p>
-                </div>
-            </div>
-        </section>
+  <header class="topbar">
+    <div class="topbar__brand">Fit Calc</div>
+    <nav class="topbar__nav" aria-label="Основная навигация">
+      <a href="#how-it-works">Как это работает</a>
+      <a href="#plans">Рационы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">FAQ</a>
+      <a class="topbar__cta" href="#calculator">Подобрать рацион</a>
+    </nav>
+    <button class="topbar__burger" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-        <section class="calculator-block" id="calculator">
-            <header class="section-header section-header--center">
-                <h2>Узнайте свою норму калорий</h2>
-                <p class="subtitle">Заполните форму ниже, чтобы получить точный расчёт вашей дневной нормы калорий и рекомендации по БЖУ.</p>
-            </header>
-            <div class="calculator-shell">
-                <form class="calc-card calc-card--form" id="calorieCalculator" novalidate>
-                    <div class="calc-card__header">
-                        <div class="calc-card__icon" aria-hidden="true">⚙️</div>
-                        <div>
-                            <p class="eyebrow">Параметры</p>
-                            <h3>Подберите персональный расчёт</h3>
-                        </div>
-                    </div>
-                    <div class="calculator__fields calculator__fields--split">
-                        <label class="field field--choice">
-                            <span>Пол</span>
-                            <div class="radio-group">
-                                <label class="radio">
-                                    <input type="radio" name="gender" value="male" checked>
-                                    <span>Мужской</span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="gender" value="female">
-                                    <span>Женский</span>
-                                </label>
-                            </div>
-                        </label>
-                        <label class="field">
-                            <span>Возраст</span>
-                            <input type="number" name="age" id="age" placeholder="лет" required min="16" max="80">
-                        </label>
-                        <label class="field">
-                            <span>Вес</span>
-                            <input type="number" name="weight" id="weight" placeholder="кг" required min="35" max="250" step="0.1">
-                        </label>
-                        <label class="field">
-                            <span>Рост</span>
-                            <input type="number" name="height" id="height" placeholder="см" required min="120" max="220">
-                        </label>
-                        <label class="field field--wide">
-                            <span>Уровень активности</span>
-                            <select name="activity" id="activity" required>
-                                <option value="1.2">Минимальная — сидячая работа, редкие прогулки</option>
-                                <option value="1.375">Низкая — лёгкие тренировки 1–3 раза в неделю</option>
-                                <option value="1.55">Средняя — 3–5 тренировок в неделю</option>
-                                <option value="1.725">Высокая — спорт почти каждый день</option>
-                                <option value="1.9">Очень высокая — тяжёлый физический труд или две тренировки в день</option>
-                            </select>
-                        </label>
-                        <label class="field field--wide">
-                            <span>Цель</span>
-                            <div class="radio-group radio-group--pill">
-                                <label class="radio">
-                                    <input type="radio" name="goal" value="loss" checked>
-                                    <span>Похудение</span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="goal" value="maintain">
-                                    <span>Поддержание</span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="goal" value="gain">
-                                    <span>Набрать массу</span>
-                                </label>
-                            </div>
-                        </label>
-                    </div>
-                    <button type="submit" class="button button--full">Рассчитать норму калорий</button>
-                    <p class="disclaimer">Важно: любая программа снижения веса должна согласовываться с врачом или диетологом. Не опускайтесь ниже безопасной нормы калорий.</p>
-                </form>
-                <div class="calc-card calc-card--result" id="calcResultCard" aria-live="polite">
-                    <div class="calc-card__header">
-                        <div class="calc-card__icon calc-card__icon--accent" aria-hidden="true">📊</div>
-                        <div>
-                            <p class="eyebrow">Результаты</p>
-                            <h3>Заполните форму слева</h3>
-                            <p class="subtitle">Здесь появится ваша норма калорий и подборка БЖУ.</p>
-                        </div>
-                    </div>
-                    <div class="calc-summary" id="calcSummary">
-                        <p class="calc-summary__label">Рекомендуемая калорийность</p>
-                        <p class="calc-summary__value" id="summaryCalories">—</p>
-                        <p class="calc-summary__meta">На основе вашей анкеты</p>
-                    </div>
-                    <div class="calc-metrics">
-                        <div class="calc-metric">
-                            <span class="calc-metric__label">Поддержание</span>
-                            <span class="calc-metric__value" id="summaryMaintain">—</span>
-                        </div>
-                        <div class="calc-metric">
-                            <span class="calc-metric__label">Дефицит (−15%)</span>
-                            <span class="calc-metric__value" id="summaryDeficit">—</span>
-                        </div>
-                        <div class="calc-metric">
-                            <span class="calc-metric__label">БЖУ</span>
-                            <span class="calc-metric__value" id="summaryMacros">—</span>
-                        </div>
-                    </div>
-                    <p class="calc-empty" id="summaryEmpty">Результаты появятся здесь</p>
-                </div>
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero__left">
+        <p class="eyebrow">Готовые рационы + доставка</p>
+        <h1>Рассчитайте норму калорий и сразу выберите готовый рацион</h1>
+        <p class="lead">Подбор меню под вашу цель за 1 минуту: считаем норму, показываем варианты рационов и подключаем доставку.</p>
+        <ul class="hero__benefits">
+          <li>Персональный расчёт по формуле Миффлина</li>
+          <li>Подбор рационов под дефицит или набор</li>
+          <li>Доставка готовых блюд на следующий день</li>
+          <li>Промокоды и подборка меню в подарок</li>
+        </ul>
+        <div class="hero__actions">
+          <a class="button" href="#calculator">Подобрать рацион</a>
+          <a class="link" href="#calculator">Просто посчитать норму</a>
+        </div>
+      </div>
+      <div class="hero__right" aria-hidden="true">
+        <div class="hero__badge">
+          <div class="badge__icon">🔥</div>
+          <div>
+            <p class="badge__label">норма ккал</p>
+            <p class="badge__value">1850</p>
+          </div>
+        </div>
+        <div class="hero__card">
+          <div class="card__calories">
+            <div class="ring">
+              <div class="ring__value">1850</div>
+              <p class="ring__caption">{{kcal_per_day}} ккал / день</p>
             </div>
-        </section>
+          </div>
+          <div class="card__plan">
+            <p class="plan__label">{{plan_name}}</p>
+            <p class="plan__meta">{{plan_calories}} ккал · 5 приёмов</p>
+            <p class="plan__price">{{price_per_day}} ₽ / день</p>
+            <span class="plan__pill">{{cta_short}}</span>
+          </div>
+        </div>
+        <div class="hero__food">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Рацион в ланчбоксе">
+        </div>
+      </div>
+    </section>
 
-        <section class="results" id="results" hidden>
-            <header class="section-header">
-                <p class="eyebrow">Шаг 2</p>
-                <h2>Результаты расчёта и дефицит калорий</h2>
-            </header>
-            <div class="results__grid">
-                <article class="result-card">
-                    <h3>BMR — основной обмен</h3>
-                    <p class="result-value" id="bmrValue">0 ккал</p>
-                    <p class="result-desc">Минимальное количество энергии, необходимое организму в состоянии покоя.</p>
-                </article>
-                <article class="result-card">
-                    <h3>AMR — суточная норма</h3>
-                    <p class="result-value" id="amrValue">0 ккал</p>
-                    <p class="result-desc">BMR с учётом вашей активности — ориентир для поддержания текущего веса.</p>
-                </article>
-                <article class="result-card result-card--accent">
-                    <h3>Рекомендуемая калорийность для похудения</h3>
-                    <p class="result-value" id="recommendedCalories">0 ккал</p>
-                    <p class="result-desc">Комфортный дефицит, который позволит терять 0,5–1 кг в неделю без жёстких диет.</p>
-                </article>
+    <section class="calculator" id="calculator">
+      <header class="section-header">
+        <p class="eyebrow">Шаг 1</p>
+        <h2>Калькулятор нормы калорий</h2>
+        <p class="subtitle">Заполните форму и получите готовый рацион под вашу цель.</p>
+      </header>
+      <div class="calculator__grid">
+        <form id="calorieForm" class="card" novalidate>
+          <div class="field-group">
+            <label>Пол
+              <div class="radio-row">
+                <label class="radio"><input type="radio" name="gender" value="male" checked> Мужской</label>
+                <label class="radio"><input type="radio" name="gender" value="female"> Женский</label>
+              </div>
+            </label>
+            <label>Возраст
+              <input type="number" name="age" min="16" max="80" required placeholder="лет">
+            </label>
+            <label>Рост
+              <input type="number" name="height" min="120" max="220" required placeholder="см">
+            </label>
+            <label>Вес
+              <input type="number" name="weight" min="35" max="250" step="0.1" required placeholder="кг">
+            </label>
+            <label>Активность
+              <select name="activity" required>
+                <option value="1.2">Минимальная</option>
+                <option value="1.375">Лёгкие тренировки 1–3 раза/нед</option>
+                <option value="1.55">Средняя активность</option>
+                <option value="1.725">Высокая активность</option>
+                <option value="1.9">Очень высокая</option>
+              </select>
+            </label>
+            <label>Цель
+              <div class="radio-row radio-row--pill">
+                <label class="radio"><input type="radio" name="goal" value="loss" checked> Похудение</label>
+                <label class="radio"><input type="radio" name="goal" value="maintain"> Поддержание</label>
+                <label class="radio"><input type="radio" name="goal" value="gain"> Набор</label>
+              </div>
+            </label>
+          </div>
+          <button type="submit" class="button button--full">Подобрать рацион</button>
+          <p class="helper">Нажимая кнопку, вы соглашаетесь получить рекомендации и подборку меню.</p>
+        </form>
+        <div class="card card--result" id="resultCard" hidden>
+          <p class="eyebrow">Результат</p>
+          <h3 id="resultCalories">— ккал</h3>
+          <p class="subtitle" id="resultGoal">Ваша цель</p>
+          <div class="result__metrics">
+            <div>
+              <p class="metric__label">Поддержание</p>
+              <p class="metric__value" id="maintainValue">—</p>
             </div>
-            <p class="results__note">Под вашу норму мы подобрали готовые рационы от партнёров.</p>
-            <a class="button button--ghost" href="#partner-plans">Смотреть готовые рационы</a>
+            <div>
+              <p class="metric__label">Дефицит / профицит</p>
+              <p class="metric__value" id="deltaValue">—</p>
+            </div>
+            <div>
+              <p class="metric__label">БЖУ</p>
+              <p class="metric__value" id="macrosValue">—</p>
+            </div>
+          </div>
+          <p class="note" id="safetyNote" hidden>Получилось меньше 1200 ккал. Пожалуйста, проконсультируйтесь со специалистом.</p>
+          <a class="button button--ghost" href="#plans">Посмотреть рационы</a>
+        </div>
+      </div>
+    </section>
 
-            <div class="table-wrapper">
-                <table class="result-table">
-                    <caption>Сколько калорий нужно чтобы похудеть</caption>
-                    <thead>
-                        <tr>
-                            <th>Цель</th>
-                            <th>Калорий</th>
-                            <th>Комментарий</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Цель">Поддержание веса</td>
-                            <td data-label="Калорий" id="maintainCalories">0 ккал</td>
-                            <td data-label="Комментарий">Используйте, если хотите удерживать текущий вес.</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Цель">Похудение (−15%)</td>
-                            <td data-label="Калорий" id="mildDeficitCalories">0 ккал</td>
-                            <td data-label="Комментарий">Оптимальный дефицит калорий для постепенного снижения веса 0,5–1 кг в неделю.</td>
-                        </tr>
-                        <tr class="warning-row">
-                            <td data-label="Цель">Экстремальное похудение (−25%)</td>
-                            <td data-label="Калорий" id="aggressiveDeficitCalories">0 ккал</td>
-                            <td data-label="Комментарий">Используйте только под контролем специалиста — высокий риск нехватки нутриентов.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <section class="result" id="result" hidden>
+      <header class="section-header">
+        <p class="eyebrow">Шаг 2</p>
+        <h2>Ваша норма и рекомендованный рацион</h2>
+      </header>
+      <div class="result__grid">
+        <div class="card card--highlight">
+          <h3>Норма калорий</h3>
+          <p class="result__value" id="resultValue">— ккал</p>
+          <p class="subtitle" id="resultSubtitle">Под вашу цель</p>
+        </div>
+        <div class="card" id="recommendCard">
+          <p class="eyebrow">Рекомендуем</p>
+          <h3 id="recommendTitle">Рацион</h3>
+          <p class="subtitle" id="recommendMeta">Ккал и приёмы пищи</p>
+          <ul class="list" id="recommendBullets"></ul>
+          <div class="price-row">
+            <span class="price" id="recommendPrice">— ₽/день</span>
+            <a class="button" href="#plans">Подобрать рацион</a>
+          </div>
+          <p class="note">Можно выбрать другой план ниже — всё в одном оформлении.</p>
+        </div>
+      </div>
+    </section>
 
-            <section class="macros" aria-labelledby="macros-heading">
-                <h3 id="macros-heading">Рекомендуемый баланс БЖУ при похудении</h3>
-                <p>Расчёт основан на формуле: белки — 1,6 г/кг веса, жиры — 0,8 г/кг, углеводы — остаток калорий. Значения округлены до целых.</p>
-                <div class="table-wrapper">
-                    <table class="result-table">
-                        <thead>
-                            <tr>
-                                <th>Макронутриент</th>
-                                <th>Количество</th>
-                                <th>Пояснение</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td data-label="Макронутриент">Белки</td>
-                                <td data-label="Количество" id="proteinAmount">0 г</td>
-                                <td data-label="Пояснение">Поддерживают мышечную массу и снижают чувство голода.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Макронутриент">Жиры</td>
-                                <td data-label="Количество" id="fatAmount">0 г</td>
-                                <td data-label="Пояснение">Нужны для гормонального баланса и усвоения витаминов.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Макронутриент">Углеводы</td>
-                                <td data-label="Количество" id="carbAmount">0 г</td>
-                                <td data-label="Пояснение">Источник энергии для тренировок и мозга. Рекомендуем распределять между основными приёмами пищи.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+    <section class="plans" id="plans" hidden>
+      <header class="section-header">
+        <h2>Рационы под вашу норму</h2>
+        <p class="subtitle">Выберите подходящий план — все варианты подстраиваются под рассчитанные калории.</p>
+      </header>
+      <div class="plans__grid" id="plansGrid"></div>
+      <button class="button button--ghost" id="showMorePlans">Показать ещё рационы</button>
+    </section>
 
-            <div class="alert" id="safetyNotice" role="alert" hidden>
-                <strong>Внимание!</strong> Полученная калорийность ниже 1200 ккал. Обратитесь к врачу, прежде чем снижать рацион настолько резко.
-            </div>
-        </section>
+    <section class="stats" id="stats">
+      <header class="section-header">
+        <h2>Почему с Fit Calc удобно</h2>
+      </header>
+      <div class="stats__grid">
+        <article class="stat"><strong>35 000+</strong><p>подборов рационов по России</p></article>
+        <article class="stat"><strong>4.9/5</strong><p>средняя оценка клиентов</p></article>
+        <article class="stat"><strong>3 дня</strong><p>до первых заметных изменений</p></article>
+        <article class="stat"><strong>90 мин</strong><p>экономии времени на готовке каждый день</p></article>
+      </div>
+    </section>
 
-        <section class="partner-plans" id="partner-plans">
-            <header class="section-header">
-                <p class="eyebrow">Шаг 3</p>
-                <h2>Готовые рационы под вашу норму калорий</h2>
-                <p class="subtitle">Программы в диапазоне <span id="calorieRange">—</span> ккал/сутки.</p>
-            </header>
-            <div class="filters">
-                <label class="filter">
-                    <span>Цель</span>
-                    <select id="goalFilter">
-                        <option value="all">Все цели</option>
-                        <option value="loss">Похудение</option>
-                        <option value="maintain">Поддержание</option>
-                        <option value="gain">Набор</option>
-                    </select>
-                </label>
-                <label class="filter">
-                    <span>Бюджет</span>
-                    <select id="budgetFilter">
-                        <option value="all">Любой</option>
-                        <option value="economy">Эконом</option>
-                        <option value="balance">Баланс</option>
-                        <option value="premium">Премиум</option>
-                    </select>
-                </label>
-            </div>
-            <div class="cards" id="partnerCards"></div>
-            <div class="accent-gallery" aria-hidden="true">
-                <figure class="accent-gallery__item">
-                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=80" alt="Три тарелки с полезными блюдами" loading="lazy">
-                    <figcaption>Крупный сет на три приёма пищи — баланс БЖУ</figcaption>
-                </figure>
-                <figure class="accent-gallery__item">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Зелёный салат и смузи" loading="lazy">
-                    <figcaption>Акцентные фото помогают увидеть реальные порции</figcaption>
-                </figure>
-            </div>
-        </section>
+    <section class="reviews" id="reviews">
+      <header class="section-header">
+        <h2>Отзывы</h2>
+      </header>
+      <div class="reviews__slider" id="reviewsSlider"></div>
+      <div class="center"><a class="button" href="#calculator">Подобрать рацион</a></div>
+    </section>
 
-        <section class="comparison" id="comparison">
-            <header class="section-header">
-                <h2>Сравните сервисы и выберите свой</h2>
-            </header>
-            <div class="table-wrapper table-wrapper--scroll">
-                <table class="comparison-table" aria-label="Сравнение сервисов доставки ПП">
-                    <thead>
-                        <tr>
-                            <th>Сервис</th>
-                            <th>Калорийность под вас</th>
-                            <th>Цена от/день</th>
-                            <th>Приёмов пищи</th>
-                            <th>Для кого подходит</th>
-                            <th>Особенности</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="comparisonBody"></tbody>
-                </table>
-            </div>
-            <div class="cta-inline">
-                <div>
-                    <h3>Не хочется вчитываться в таблицы?</h3>
-                    <p class="subtitle">Выберите готовый рацион — мы сразу покажем ближайшие по калориям программы.</p>
-                </div>
-                <a class="button" href="#partner-plans">Подобрать рацион за 1 минуту</a>
-            </div>
-        </section>
+    <section class="how" id="how-it-works">
+      <header class="section-header">
+        <h2>Как это работает</h2>
+      </header>
+      <div class="steps">
+        <article class="step"><span>01</span><h3>Заполните калькулятор</h3><p>30 секунд — и мы узнаем вашу норму калорий.</p></article>
+        <article class="step"><span>02</span><h3>Получите готовые рационы</h3><p>Показываем подборку программ под вашу цель.</p></article>
+        <article class="step"><span>03</span><h3>Выберите и подтвердите</h3><p>Единая форма оформления — без звонков и сложностей.</p></article>
+        <article class="step"><span>04</span><h3>Получите доставку</h3><p>Курьер привезёт рацион, остаётся только есть по плану.</p></article>
+      </div>
+      <div class="center"><a class="button" href="#calculator">Подобрать рацион</a></div>
+    </section>
 
-        <section class="how-it-works" id="how">
-            <header class="section-header section-header--center">
-                <h2>Как это работает</h2>
-                <p class="subtitle">Четыре простых шага к правильному питанию без подсчёта калорий</p>
-            </header>
-            <div class="process">
-                <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">①</div>
-                    <h3>Рассчитайте норму</h3>
-                    <p>Введите свои параметры и получите точный расчёт калорий и БЖУ.</p>
-                </article>
-                <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">②</div>
-                    <h3>Выберите рацион</h3>
-                    <p>Сравните сервисы доставки и выберите подходящий под вашу норму.</p>
-                </article>
-                <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">③</div>
-                    <h3>Оформите доставку</h3>
-                    <p>Забронируйте готовые блюда с доставкой на дом или в офис.</p>
-                </article>
-                <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">④</div>
-                    <h3>Питайтесь правильно</h3>
-                    <p>Получайте готовые рационы и наблюдайте результаты.</p>
-                </article>
-            </div>
-        </section>
+    <section class="day" id="day-example">
+      <header class="section-header">
+        <h2>Как проходит день на рационе</h2>
+        <p class="subtitle">Всё уже взвешено и просчитано — остаётся разогреть и съесть.</p>
+      </header>
+      <div class="timeline">
+        <div class="timeline__item"><span>08:00</span><strong>Завтрак</strong><p>Омлет с овощами и тост из цельнозернового хлеба.</p></div>
+        <div class="timeline__item"><span>11:00</span><strong>Перекус</strong><p>Йогурт без сахара и горсть орехов.</p></div>
+        <div class="timeline__item"><span>14:00</span><strong>Обед</strong><p>Лосось с киноа и салатом из свежих овощей.</p></div>
+        <div class="timeline__item"><span>17:00</span><strong>Полдник</strong><p>Хумус с овощными стиками.</p></div>
+        <div class="timeline__item"><span>20:00</span><strong>Ужин</strong><p>Курица с запечёнными овощами и булгуром.</p></div>
+      </div>
+      <p class="note center">Меню варьируется от рациона к рациону — макросы подстраиваются под вашу цель.</p>
+      <div class="center"><a class="button" href="#calculator">Подобрать рацион</a></div>
+    </section>
 
-        <section class="menu" id="menu">
-            <header class="section-header">
-                <h2>Как выглядит ваш день с готовым рационом</h2>
-            </header>
-            <div class="tabs" role="tablist" aria-label="Меню партнёров">
-                <button class="tab tab--active" data-tab="Level Kitchen" role="tab">Level Kitchen</button>
-                <button class="tab" data-tab="Yamdiet" role="tab">Yamdiet</button>
-                <button class="tab" data-tab="BeFit" role="tab">BeFit</button>
-                <button class="tab" data-tab="My Food" role="tab">My Food</button>
-            </div>
-            <div class="tab-content" id="tabContent"></div>
-        </section>
+    <section class="safety" id="safety">
+      <header class="section-header">
+        <h2>Безопасное снижение веса</h2>
+      </header>
+      <ul class="list list--grid">
+        <li>Баланс БЖУ без экстремальных дефицитов</li>
+        <li>Возможность менять рацион и блюда</li>
+        <li>Учёт уровня активности и режима дня</li>
+        <li>Программы для разных ограничений и предпочтений</li>
+      </ul>
+      <div class="center"><a class="button" href="#calculator">Подобрать рацион</a></div>
+    </section>
 
-        <section class="reviews" id="reviews">
-            <header class="section-header">
-                <h2>Результаты клиентов с готовыми рационами</h2>
-            </header>
-            <div class="review-grid" id="reviewGrid"></div>
-            <div class="cta-inline cta-inline--light">
-                <div>
-                    <h3>Хотите повторить их прогресс?</h3>
-                    <p class="subtitle">Сохраняем калории и вкусы, подстраиваем под вашу цель.</p>
-                </div>
-                <a class="button" href="#partner-plans">Подобрать рацион</a>
-            </div>
-            <div class="center">
-                <a class="button" href="#partner-plans">Хочу такой же результат → подобрать рацион</a>
-            </div>
-        </section>
+    <section class="faq" id="faq">
+      <header class="section-header">
+        <h2>FAQ</h2>
+      </header>
+      <div class="accordion" id="faqList"></div>
+    </section>
 
-        <section class="trust" id="trust">
-            <header class="section-header">
-                <h2>Безопасное снижение веса без жёстких диет</h2>
-            </header>
-            <div class="trust__grid">
-                <article class="trust__item">
-                    <h3>Безопасный дефицит</h3>
-                    <p>Рассчитываем калории с учётом пола, возраста и активности, чтобы не выходить за рамки здорового снижения веса.</p>
-                </article>
-                <article class="trust__item">
-                    <h3>Меню от нутрициологов</h3>
-                    <p>Партнёры разрабатывают программы с балансом БЖУ и сезонными продуктами, без монодиет.</p>
-                </article>
-                <article class="trust__item">
-                    <h3>Контроль прогресса</h3>
-                    <p>Сравнивайте планы, выбирайте удобный и корректируйте калории каждые 4–6 недель по результатам.</p>
-                </article>
-            </div>
-            <p class="subtitle">Можно готовить по нашим рекомендациям самому, но если нет времени — выберите готовые рационы.</p>
-            <a class="button" href="#partner-plans">Выбрать рацион без готовки</a>
-            <div class="trust__badges" aria-label="Социальное доказательство">
-                <div class="trust__badge">
-                    <strong>35 000+</strong>
-                    <span>подборов рационов</span>
-                </div>
-                <div class="trust__badge">
-                    <strong>4.9/5</strong>
-                    <span>средняя оценка клиентов</span>
-                </div>
-                <div class="trust__badge">
-                    <strong>6 лет</strong>
-                    <span>работаем на рынке ПП</span>
-                </div>
-            </div>
-            <div class="partner-logos partner-logos--wide">
-                <span>Level Kitchen</span>
-                <span>Yamdiet</span>
-                <span>BeFit</span>
-                <span>My Food</span>
-                <span>Delivery Club</span>
-                <span>Samokat</span>
-            </div>
-        </section>
+    <section class="final" id="final-cta">
+      <div class="final__content">
+        <h2>Начните уже завтра</h2>
+        <p class="subtitle">Заполните калькулятор — мы подберём рацион и пришлём промокоды.</p>
+        <ul class="list">
+          <li>Подбор меню под вашу цель</li>
+          <li>Доставка готовых рационов на удобное время</li>
+          <li>Промокоды и бонусы на первый заказ</li>
+        </ul>
+        <a class="button" href="#calculator">Подобрать рацион</a>
+        <p class="note">Это бесплатно и ни к чему не обязывает.</p>
+      </div>
+    </section>
 
-        <section class="faq" id="faq">
-            <header class="section-header">
-                <h2>FAQ</h2>
-            </header>
-            <div class="tabs tabs--secondary" role="tablist" aria-label="FAQ категории">
-                <button class="tab tab--active" data-tab="delivery" role="tab">О доставке питания</button>
-                <button class="tab" data-tab="calculator" role="tab">О калькуляторе</button>
-            </div>
-            <div class="faq__content" id="faqContent"></div>
-        </section>
+    <section class="promo" id="promo-lead">
+      <header class="section-header">
+        <h2>Получить промокоды и подборку меню</h2>
+        <p class="subtitle">Оставьте контакты — отправим 2–3 варианта под вашу норму.</p>
+      </header>
+      <form class="card promo__form" id="promoForm">
+        <label>Имя
+          <input type="text" name="name" required placeholder="Как к вам обращаться">
+        </label>
+        <label>Контакты
+          <input type="text" name="contact" required placeholder="Телефон или мессенджер">
+        </label>
+        <button type="submit" class="button button--full">Подобрать рацион</button>
+        <p class="helper">Отправляя форму, вы согласны на обработку данных.</p>
+      </form>
+    </section>
 
-        <section class="lead" id="lead">
-            <header class="section-header">
-                <h2>Получить подборку меню и промокоды</h2>
-                <p class="subtitle">Оставьте контакты — вышлем 2–3 варианта меню на вашу норму калорий и действующие скидки от партнёров.</p>
-            </header>
-            <form class="lead__form">
-                <label class="field">
-                    <span>Имя</span>
-                    <input type="text" name="name" placeholder="Как к вам обращаться" required>
-                </label>
-                <label class="field">
-                    <span>Контакты</span>
-                    <div class="contact-input">
-                        <select name="contactType">
-                            <option value="email">Email</option>
-                            <option value="whatsapp">WhatsApp</option>
-                            <option value="telegram">Telegram</option>
-                        </select>
-                        <input type="text" name="contactValue" placeholder="example@mail.ru или @username" required>
-                    </div>
-                </label>
-                <label class="field field--checkbox">
-                    <input type="checkbox" name="dietLimitations" id="dietLimitations">
-                    <span>Есть ограничения по питанию</span>
-                </label>
-                <label class="field field--wide" id="limitationsField" hidden>
-                    <span>Расскажите о ваших ограничениях</span>
-                    <textarea name="limitations" rows="3" placeholder="Без глютена, без лактозы, аллергии..."></textarea>
-                </label>
-                <button type="submit" class="button">Получить подборку меню</button>
-            </form>
-        </section>
+    <footer class="footer" id="footer">
+      <div class="footer__brand">Fit Calc</div>
+      <p class="subtitle">© <span id="year"></span> Все права защищены.</p>
+      <div class="footer__links">
+        <a href="#calculator">Калькулятор</a>
+        <a href="#plans">Рационы</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </footer>
+  </main>
 
-        <section class="final-offer" id="final">
-            <div class="final-offer__content">
-                <h2>Подберите рацион и начните питаться правильно уже завтра</h2>
-                <p>Рассчитайте калории или сразу переходите к подбору программ доставки.</p>
-                <div class="hero__actions">
-                    <a class="button" href="#calculator">Рассчитать и подобрать рацион</a>
-                    <a class="button button--ghost" href="#partner-plans">Уже знаю свою норму → подобрать рацион</a>
-                </div>
-            </div>
-            <footer class="footer">
-                <div class="footer__brand">
-                    <strong>Fit Calc</strong>
-                    <p>© <span id="year"></span> Все права защищены.</p>
-                </div>
-                <div class="footer__links">
-                    <a href="#">Политика конфиденциальности</a>
-                    <div class="partner-logos">
-                        <span>Level Kitchen</span>
-                        <span>Yamdiet</span>
-                        <span>BeFit</span>
-                        <span>My Food</span>
-                    </div>
-                </div>
-            </footer>
-        </section>
-    </main>
+  <div class="sticky" id="mobile-sticky-cta" hidden>
+    <span id="stickyText">Рассчитать норму и подобрать рацион</span>
+    <a class="button" href="#calculator">Подобрать рацион</a>
+  </div>
 
-    <div class="sticky-bar" id="stickyBar" hidden>
-        <span>Ваша норма: <strong id="stickyCalories">0 ккал</strong></span>
-        <a class="button" href="#partner-plans">Подобрать рацион</a>
-    </div>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "По какой формуле работает калькулятор?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Калькулятор использует формулу Миффлина–Сан Жеора, которая учитывает пол, возраст, вес и рост для расчёта BMR."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Насколько точны результаты?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Результаты являются ориентировочными: на энергозатраты влияют гормональный фон, состав тела и ежедневная активность."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Почему нельзя есть меньше 1200 ккал?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Рацион ниже 1200 ккал может привести к дефициту витаминов и замедлению обмена веществ, поэтому снижать калорийность так сильно можно только под наблюдением врача."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Можно ли худеть без подсчёта калорий?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Можно контролировать порции и выбирать цельные продукты, но подсчёт калорий помогает точнее управлять дефицитом и быстрее реагировать на остановку прогресса."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Что делать после расчёта нормы?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Используйте полученную норму для планирования меню, составьте список покупок и регулярно отслеживайте изменения веса и самочувствия."
-                }
-            }
-        ]
-    }
-    </script>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
