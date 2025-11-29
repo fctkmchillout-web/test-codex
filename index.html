@@ -15,44 +15,40 @@
         <section class="hero" id="top">
             <div class="hero__intro">
                 <div class="hero__tag">Персональный расчёт</div>
-                <h1>Рассчитайте норму калорий<br>и получите готовый рацион</h1>
-                <p class="hero__lead">Узнайте свою дневную норму калорий за 30 секунд и получите персональные рекомендации по питанию.</p>
-                <ul class="hero__points">
-                    <li>Подбор рационов под ваш дефицит</li>
-                    <li>Сравнение сервисов и быстрый заказ</li>
-                    <li>Промокоды и готовые программы</li>
-                </ul>
+                <h1>Готовые рационы с доставкой<br>под вашу норму калорий</h1>
+                <p class="hero__lead">Fit Calc за 1 минуту подберёт меню под ваш вес, цель и режим дня, а партнёрские сервисы привезут готовую еду уже завтра.</p>
+                <p class="hero__note">Подходит для похудения, поддержания веса и набора массы.</p>
                 <div class="hero__cta-row">
-                    <a class="button" href="#calculator">Рассчитать</a>
-                    <a class="button button--ghost" href="#partner-plans">Выбрать меню</a>
+                    <a class="button" href="#calculator">Подобрать рацион и оформить доставку</a>
+                    <a class="button button--ghost" href="#plans">Выбрать меню</a>
                 </div>
-                <div class="hero__chips">
-                    <span class="chip">🔻 Дефицит калорий</span>
-                    <span class="chip">⚖️ Баланс БЖУ</span>
-                    <span class="chip">🍽️ Готовые рационы</span>
-                </div>
+                <ul class="hero__points hero__points--inline">
+                    <li>Только проверенные сервисы доставки</li>
+                    <li>Без жёстких диет и голода</li>
+                    <li>Уже более 3 000 человек подобрали рацион через Fit Calc</li>
+                </ul>
             </div>
             <div class="hero__visual" aria-hidden="true">
                 <div class="hero__stat-card">
                     <div class="hero__stat-top">
                         <div>
                             <p class="eyebrow">Ваша норма</p>
-                            <p class="hero__stat-value">1 850</p>
+                            <p class="hero__stat-value" id="heroCalories">1 850</p>
                             <p class="hero__stat-caption">ккал в день</p>
                         </div>
-                        <div class="pill">-15%</div>
+                        <div class="pill" id="heroDelta">-15%</div>
                     </div>
                     <div class="hero__stat-macros">
                         <div>
-                            <span>138g</span>
+                            <span id="heroProtein">138г</span>
                             <small>Белки</small>
                         </div>
                         <div>
-                            <span>62g</span>
+                            <span id="heroFat">62г</span>
                             <small>Жиры</small>
                         </div>
                         <div>
-                            <span>171g</span>
+                            <span id="heroCarbs">171г</span>
                             <small>Углеводы</small>
                         </div>
                     </div>
@@ -82,8 +78,8 @@
 
         <section class="calculator-block" id="calculator">
             <header class="section-header section-header--center">
-                <h2>Узнайте свою норму калорий</h2>
-                <p class="subtitle">Заполните форму ниже, чтобы получить точный расчёт вашей дневной нормы калорий и рекомендации по БЖУ.</p>
+                <h2>Шаг 1. Узнайте вашу норму калорий</h2>
+                <p class="subtitle">Это нужно, чтобы подобрать рацион, с которым вы будете худеть или поддерживать вес без чувства голода.</p>
             </header>
             <div class="calculator-shell">
                 <form class="calc-card calc-card--form" id="calorieCalculator" novalidate>
@@ -148,16 +144,16 @@
                             </div>
                         </label>
                     </div>
-                    <button type="submit" class="button button--full">Рассчитать норму калорий</button>
-                    <p class="disclaimer">Важно: любая программа снижения веса должна согласовываться с врачом или диетологом. Не опускайтесь ниже безопасной нормы калорий.</p>
+                    <button type="submit" class="button button--full">Рассчитать и подобрать рацион</button>
+                    <p class="disclaimer">Укажите цель, параметры тела и уровень активности — Fit Calc посчитает безопасную норму и дефицит калорий, а затем предложит готовые рационы с доставкой.</p>
                 </form>
                 <div class="calc-card calc-card--result" id="calcResultCard" aria-live="polite">
                     <div class="calc-card__header">
                         <div class="calc-card__icon calc-card__icon--accent" aria-hidden="true">📊</div>
                         <div>
                             <p class="eyebrow">Результаты</p>
-                            <h3>Заполните форму слева</h3>
-                            <p class="subtitle">Здесь появится ваша норма калорий и подборка БЖУ.</p>
+                            <h3 id="resultTitle">Заполните форму слева</h3>
+                            <p class="subtitle" id="resultSubtitle">Здесь появится ваша норма калорий и подборка БЖУ.</p>
                         </div>
                     </div>
                     <div class="calc-summary" id="calcSummary">
@@ -187,27 +183,46 @@
         <section class="results" id="results" hidden>
             <header class="section-header">
                 <p class="eyebrow">Шаг 2</p>
-                <h2>Результаты расчёта и дефицит калорий</h2>
+                <h2>Ваша норма калорий рассчитана</h2>
+                <p class="subtitle" id="resultsLead">Заполните форму, чтобы увидеть расчёт.</p>
             </header>
-            <div class="results__grid">
-                <article class="result-card">
-                    <h3>BMR — основной обмен</h3>
-                    <p class="result-value" id="bmrValue">0 ккал</p>
-                    <p class="result-desc">Минимальное количество энергии, необходимое организму в состоянии покоя.</p>
-                </article>
-                <article class="result-card">
-                    <h3>AMR — суточная норма</h3>
-                    <p class="result-value" id="amrValue">0 ккал</p>
-                    <p class="result-desc">BMR с учётом вашей активности — ориентир для поддержания текущего веса.</p>
+            <div class="results__stack">
+                <article class="result-summary">
+                    <p class="result-summary__lead" id="resultDynamic">Ваша ориентировочная норма — <strong>—</strong>.</p>
+                    <p class="result-summary__detail" id="resultDetail">Для комфортного похудения мы заложили безопасный дефицит <strong>—</strong>.</p>
+                    <div class="result-summary__stats">
+                        <div>
+                            <p class="eyebrow">AMR</p>
+                            <p class="result-value" id="amrValue">0 ккал</p>
+                            <p class="result-desc">Суточная норма с учётом активности</p>
+                        </div>
+                        <div>
+                            <p class="eyebrow">BMR</p>
+                            <p class="result-value" id="bmrValue">0 ккал</p>
+                            <p class="result-desc">Основной обмен в покое</p>
+                        </div>
+                        <div>
+                            <p class="eyebrow">БЖУ</p>
+                            <p class="result-value" id="resultMacros">—</p>
+                            <p class="result-desc">Рекомендации по макроэлементам</p>
+                        </div>
+                    </div>
                 </article>
                 <article class="result-card result-card--accent">
-                    <h3>Рекомендуемая калорийность для похудения</h3>
-                    <p class="result-value" id="recommendedCalories">0 ккал</p>
-                    <p class="result-desc">Комфортный дефицит, который позволит терять 0,5–1 кг в неделю без жёстких диет.</p>
+                    <div class="badge">Рекомендуемый рацион под вашу норму</div>
+                    <h3 id="planTitle">Рацион “Баланс 1800 ккал”</h3>
+                    <ul class="plan-list">
+                        <li id="planMeals">5 приёмов пищи в день</li>
+                        <li id="planFit">Подходит вашей норме: 1700–1900 ккал</li>
+                        <li id="planResult">Средний результат клиентов — до –4.7 кг за 4 недели</li>
+                        <li id="planPrice">890 ₽/день · 18 500 ₽/месяц</li>
+                    </ul>
+                    <a class="button" href="#plans">Оформить доставку на завтра</a>
+                    <p class="result-card__note">Можно изменить рацион или перенести доставку. Оплата напрямую сервису-доставщику.</p>
                 </article>
             </div>
             <p class="results__note">Под вашу норму мы подобрали готовые рационы от партнёров.</p>
-            <a class="button button--ghost" href="#partner-plans">Смотреть готовые рационы</a>
+            <a class="button button--ghost" href="#plans">Смотреть готовые рационы</a>
 
             <div class="table-wrapper">
                 <table class="result-table">
@@ -277,10 +292,11 @@
             </div>
         </section>
 
-        <section class="partner-plans" id="partner-plans">
+        <section class="partner-plans" id="plans">
             <header class="section-header">
                 <p class="eyebrow">Шаг 3</p>
-                <h2>Готовые рационы под вашу норму калорий</h2>
+                <h2>Выберите рацион, который подходит именно вам</h2>
+                <p class="subtitle">Мы подобрали несколько вариантов под вашу норму калорий. Отличаются ценой, составом и количеством приёмов пищи.</p>
                 <p class="subtitle">Программы в диапазоне <span id="calorieRange">—</span> ккал/сутки.</p>
             </header>
             <div class="filters">
@@ -304,6 +320,7 @@
                 </label>
             </div>
             <div class="cards" id="partnerCards"></div>
+            <p class="center"><a class="link" href="#lead">Не знаете, что выбрать? Оставьте контакты — поможем подобрать рацион под ваш режим и бюджет.</a></p>
             <div class="accent-gallery" aria-hidden="true">
                 <figure class="accent-gallery__item">
                     <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=80" alt="Три тарелки с полезными блюдами" loading="lazy">
@@ -341,55 +358,101 @@
                     <h3>Не хочется вчитываться в таблицы?</h3>
                     <p class="subtitle">Выберите готовый рацион — мы сразу покажем ближайшие по калориям программы.</p>
                 </div>
-                <a class="button" href="#partner-plans">Подобрать рацион за 1 минуту</a>
+                <a class="button" href="#plans">Подобрать рацион за 1 минуту</a>
             </div>
         </section>
 
         <section class="how-it-works" id="how">
             <header class="section-header section-header--center">
-                <h2>Как это работает</h2>
-                <p class="subtitle">Четыре простых шага к правильному питанию без подсчёта калорий</p>
+                <h2>Как работает Fit Calc и подбор готовых рационов</h2>
             </header>
             <div class="process">
                 <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">①</div>
-                    <h3>Рассчитайте норму</h3>
-                    <p>Введите свои параметры и получите точный расчёт калорий и БЖУ.</p>
+                    <div class="process__icon" aria-hidden="true">1</div>
+                    <h3>Вы отвечаете на несколько вопросов</h3>
+                    <p>Указываете цель, параметры тела, режим дня и предпочтения в питании.</p>
                 </article>
                 <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">②</div>
-                    <h3>Выберите рацион</h3>
-                    <p>Сравните сервисы доставки и выберите подходящий под вашу норму.</p>
+                    <div class="process__icon" aria-hidden="true">2</div>
+                    <h3>Мы считаем норму и дефицит калорий</h3>
+                    <p>Fit Calc рассчитывает безопасную норму калорий и подбирает варианты рационов.</p>
                 </article>
                 <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">③</div>
-                    <h3>Оформите доставку</h3>
-                    <p>Забронируйте готовые блюда с доставкой на дом или в офис.</p>
+                    <div class="process__icon" aria-hidden="true">3</div>
+                    <h3>Вы выбираете рацион и оформляете доставку</h3>
+                    <p>Сравниваете по цене и составу, оставляете заявку и подтверждаете заказ у сервиса.</p>
                 </article>
                 <article class="process__item">
-                    <div class="process__icon" aria-hidden="true">④</div>
-                    <h3>Питайтесь правильно</h3>
-                    <p>Получайте готовые рационы и наблюдайте результаты.</p>
+                    <div class="process__icon" aria-hidden="true">4</div>
+                    <h3>Получаете готовую еду каждый день</h3>
+                    <p>Курьер привозит рацион, вы просто разогреваете блюда и следуете плану.</p>
                 </article>
+            </div>
+            <div class="center">
+                <a class="button" href="#calculator">Подобрать рацион под мои параметры</a>
             </div>
         </section>
 
         <section class="menu" id="menu">
             <header class="section-header">
-                <h2>Как выглядит ваш день с готовым рационом</h2>
+                <h2>Как проходит день на готовом рационе</h2>
+                <p class="subtitle">Пример дня на рационе <span id="dayCalories">1500 ккал</span>. Конкретные блюда зависят от выбранного сервиса.</p>
             </header>
-            <div class="tabs" role="tablist" aria-label="Меню партнёров">
-                <button class="tab tab--active" data-tab="Level Kitchen" role="tab">Level Kitchen</button>
-                <button class="tab" data-tab="Yamdiet" role="tab">Yamdiet</button>
-                <button class="tab" data-tab="BeFit" role="tab">BeFit</button>
-                <button class="tab" data-tab="My Food" role="tab">My Food</button>
+            <div class="timeline" id="dayTimeline">
+                <div class="timeline__item">
+                    <div class="timeline__time">08:00 — Завтрак</div>
+                    <p>Овсянка на растительном молоке с ягодами и орехами, чай без сахара.</p>
+                </div>
+                <div class="timeline__item">
+                    <div class="timeline__time">11:00 — Перекус</div>
+                    <p>Творожный десерт / йогурт / фрукт.</p>
+                </div>
+                <div class="timeline__item">
+                    <div class="timeline__time">14:00 — Обед</div>
+                    <p>Куриное филе или рыба, киноа, овощи на пару, соус без сахара.</p>
+                </div>
+                <div class="timeline__item">
+                    <div class="timeline__time">17:00 — Полдник</div>
+                    <p>Ореховая смесь или протеиновый батончик.</p>
+                </div>
+                <div class="timeline__item">
+                    <div class="timeline__time">20:00 — Ужин</div>
+                    <p>Овощное рагу с индейкой / tofu, салат, лёгкий соус.</p>
+                </div>
             </div>
-            <div class="tab-content" id="tabContent"></div>
+            <p class="menu__note">Все блюда уже взвешены и посчитаны по калорийности и БЖУ — вам не нужно ничего считать и готовить.</p>
+            <div class="center">
+                <a class="button" href="#plans">Хочу так питаться — подобрать рацион</a>
+            </div>
+        </section>
+
+        <section class="metrics" id="numbers">
+            <header class="section-header">
+                <h2>Почему пользователи выбирают Fit Calc и готовые рационы</h2>
+            </header>
+            <div class="metrics__grid">
+                <article class="metric-card">
+                    <h3>3 000+ человек</h3>
+                    <p>подобрали рацион через Fit Calc</p>
+                </article>
+                <article class="metric-card">
+                    <h3>–4,7 кг в среднем</h3>
+                    <p>за первые 4 недели при соблюдении рекомендаций</p>
+                </article>
+                <article class="metric-card">
+                    <h3>До 2 часов в день экономии</h3>
+                    <p>на готовке, закупках и подсчёте калорий</p>
+                </article>
+                <article class="metric-card">
+                    <h3>4,8 из 5 — средняя оценка</h3>
+                    <p>по отзывам клиентов</p>
+                </article>
+            </div>
         </section>
 
         <section class="reviews" id="reviews">
             <header class="section-header">
-                <h2>Результаты клиентов с готовыми рационами</h2>
+                <h2>Реальные результаты клиентов</h2>
             </header>
             <div class="review-grid" id="reviewGrid"></div>
             <div class="cta-inline cta-inline--light">
@@ -397,10 +460,10 @@
                     <h3>Хотите повторить их прогресс?</h3>
                     <p class="subtitle">Сохраняем калории и вкусы, подстраиваем под вашу цель.</p>
                 </div>
-                <a class="button" href="#partner-plans">Подобрать рацион</a>
+                <a class="button" href="#plans">Подобрать рацион</a>
             </div>
             <div class="center">
-                <a class="button" href="#partner-plans">Хочу такой же результат → подобрать рацион</a>
+                <a class="button" href="#plans">Хочу такой же результат → подобрать рацион</a>
             </div>
         </section>
 
@@ -410,59 +473,69 @@
             </header>
             <div class="trust__grid">
                 <article class="trust__item">
-                    <h3>Безопасный дефицит</h3>
-                    <p>Рассчитываем калории с учётом пола, возраста и активности, чтобы не выходить за рамки здорового снижения веса.</p>
+                    <h3>Баланс БЖУ</h3>
+                    <p>Рационы составлены с учётом баланса белков, жиров и углеводов.</p>
                 </article>
                 <article class="trust__item">
-                    <h3>Меню от нутрициологов</h3>
-                    <p>Партнёры разрабатывают программы с балансом БЖУ и сезонными продуктами, без монодиет.</p>
+                    <h3>Без экстремальных дефицитов</h3>
+                    <p>Мы не используем экстремальные дефициты калорий и подбираем комфортную норму.</p>
                 </article>
                 <article class="trust__item">
-                    <h3>Контроль прогресса</h3>
-                    <p>Сравнивайте планы, выбирайте удобный и корректируйте калории каждые 4–6 недель по результатам.</p>
+                    <h3>Под ваш режим</h3>
+                    <p>Подбираем варианты под уровень активности и расписание приёмов пищи.</p>
+                </article>
+                <article class="trust__item">
+                    <h3>Гибкость</h3>
+                    <p>Можно менять рацион и сервис, если что-то не подходит.</p>
                 </article>
             </div>
-            <p class="subtitle">Можно готовить по нашим рекомендациям самому, но если нет времени — выберите готовые рационы.</p>
-            <a class="button" href="#partner-plans">Выбрать рацион без готовки</a>
-            <div class="trust__badges" aria-label="Социальное доказательство">
-                <div class="trust__badge">
-                    <strong>35 000+</strong>
-                    <span>подборов рационов</span>
-                </div>
-                <div class="trust__badge">
-                    <strong>4.9/5</strong>
-                    <span>средняя оценка клиентов</span>
-                </div>
-                <div class="trust__badge">
-                    <strong>6 лет</strong>
-                    <span>работаем на рынке ПП</span>
-                </div>
-            </div>
-            <div class="partner-logos partner-logos--wide">
-                <span>Level Kitchen</span>
-                <span>Yamdiet</span>
-                <span>BeFit</span>
-                <span>My Food</span>
-                <span>Delivery Club</span>
-                <span>Samokat</span>
-            </div>
+            <a class="button" href="#plans">Подобрать безопасный рацион</a>
         </section>
 
         <section class="faq" id="faq">
             <header class="section-header">
-                <h2>FAQ</h2>
+                <h2>FAQ: ответы на частые вопросы</h2>
             </header>
-            <div class="tabs tabs--secondary" role="tablist" aria-label="FAQ категории">
-                <button class="tab tab--active" data-tab="delivery" role="tab">О доставке питания</button>
-                <button class="tab" data-tab="calculator" role="tab">О калькуляторе</button>
+            <div class="faq__content">
+                <article class="faq__item">
+                    <h3>Я боюсь, что буду голодать. Калорий не будет слишком мало?</h3>
+                    <p>Мы рассчитываем норму калорий и дефицит по вашим параметрам и цели. Fit Calc не использует экстремальные диеты. В рацион входят полноценные порции с правильным балансом БЖУ, поэтому вы чувствуете сытость и постепенно снижаете вес.</p>
+                </article>
+                <article class="faq__item">
+                    <h3>Что, если мне не понравится еда или сервис доставки?</h3>
+                    <p>Вы всегда можете сменить рацион или сервис. Мы покажем несколько вариантов под вашу норму калорий — если один не подходит по вкусу или графику, выберите другой. Никаких долгих обязательств.</p>
+                </article>
+                <article class="faq__item">
+                    <h3>Есть ли рационы для вегетарианцев / безлактозные / безглютеновые?</h3>
+                    <p>Да, многие партнёрские сервисы предлагают специальные линейки: вегетарианские, безлактозные, безглютеновые и другие. Укажите свои ограничения при подборе — мы покажем только подходящие варианты.</p>
+                </article>
+                <article class="faq__item">
+                    <h3>Нужно ли дополнительно заниматься спортом, чтобы был результат?</h3>
+                    <p>Обязательного спорта нет — уже одного контроля калорийности и баланса питания достаточно, чтобы вес начал снижаться. Активность ускорит результат, но мы подбираем рацион так, чтобы вы могли худеть и без изнурительных тренировок.</p>
+                </article>
+                <article class="faq__item">
+                    <h3>Как оформляется и оплачивается заказ?</h3>
+                    <p>Вы выбираете рацион на сайте Fit Calc, оставляете заявку, а затем подтверждаете заказ и оплачиваете его напрямую сервису доставки. Способы оплаты зависят от выбранного сервиса: как правило, доступны онлайн-оплата и оплата картой курьеру.</p>
+                </article>
+                <article class="faq__item">
+                    <h3>На какой срок нужно оформлять доставку?</h3>
+                    <p>Можно начать с короткого периода — например, на 5–7 дней — чтобы протестировать рацион. После этого вы сможете продлить доставку или поменять программу.</p>
+                </article>
+                <article class="faq__item">
+                    <h3>Если у меня хронические заболевания, можно ли пользоваться сервисом?</h3>
+                    <p>Fit Calc не заменяет консультацию врача. При наличии хронических заболеваний или строгих медицинских ограничений рекомендуем сначала обсудить рацион питания с вашим лечащим врачом и передать его рекомендации при подборе программы.</p>
+                </article>
+                <article class="faq__item">
+                    <h3>Чем Fit Calc отличается от обычного калькулятора калорий?</h3>
+                    <p>Обычный калькулятор только показывает цифру, а вы сами решаете, что готовить и как считать. Fit Calc сразу предлагает готовые рационы с доставкой под ваш план по калориям — вам не нужно готовить, взвешивать продукты и вести учёт.</p>
+                </article>
             </div>
-            <div class="faq__content" id="faqContent"></div>
         </section>
 
         <section class="lead" id="lead">
             <header class="section-header">
-                <h2>Получить подборку меню и промокоды</h2>
-                <p class="subtitle">Оставьте контакты — вышлем 2–3 варианта меню на вашу норму калорий и действующие скидки от партнёров.</p>
+                <h2>Не готовы заказывать сейчас?</h2>
+                <p class="subtitle">Оставьте контакты — пришлём подборку подходящих рационов и промокоды на скидку у партнёрских сервисов.</p>
             </header>
             <form class="lead__form">
                 <label class="field">
@@ -470,35 +543,25 @@
                     <input type="text" name="name" placeholder="Как к вам обращаться" required>
                 </label>
                 <label class="field">
-                    <span>Контакты</span>
-                    <div class="contact-input">
-                        <select name="contactType">
-                            <option value="email">Email</option>
-                            <option value="whatsapp">WhatsApp</option>
-                            <option value="telegram">Telegram</option>
-                        </select>
-                        <input type="text" name="contactValue" placeholder="example@mail.ru или @username" required>
-                    </div>
+                    <span>Телефон или мессенджер</span>
+                    <input type="text" name="contactValue" placeholder="@username или +7..." required>
                 </label>
-                <label class="field field--checkbox">
-                    <input type="checkbox" name="dietLimitations" id="dietLimitations">
-                    <span>Есть ограничения по питанию</span>
-                </label>
-                <label class="field field--wide" id="limitationsField" hidden>
-                    <span>Расскажите о ваших ограничениях</span>
-                    <textarea name="limitations" rows="3" placeholder="Без глютена, без лактозы, аллергии..."></textarea>
-                </label>
-                <button type="submit" class="button">Получить подборку меню</button>
+                <button type="submit" class="button">Получить подборку и промокоды</button>
             </form>
         </section>
 
         <section class="final-offer" id="final">
             <div class="final-offer__content">
                 <h2>Подберите рацион и начните питаться правильно уже завтра</h2>
-                <p>Рассчитайте калории или сразу переходите к подбору программ доставки.</p>
+                <p>Отвечаете на несколько вопросов — и получаете готовый план питания с доставкой от проверенных сервисов.</p>
+                <ul class="hero__points">
+                    <li>Подбор под ваш вес, цель и режим</li>
+                    <li>Готовая еда каждый день без готовки</li>
+                    <li>Безопасное снижение веса без жёстких диет</li>
+                </ul>
                 <div class="hero__actions">
-                    <a class="button" href="#calculator">Рассчитать и подобрать рацион</a>
-                    <a class="button button--ghost" href="#partner-plans">Уже знаю свою норму → подобрать рацион</a>
+                    <a class="button" href="#calculator">Подобрать рацион и оформить доставку</a>
+                    <a class="button button--ghost" href="#plans">Уже знаю норму → выбрать рацион</a>
                 </div>
             </div>
             <footer class="footer">
@@ -521,7 +584,7 @@
 
     <div class="sticky-bar" id="stickyBar" hidden>
         <span>Ваша норма: <strong id="stickyCalories">0 ккал</strong></span>
-        <a class="button" href="#partner-plans">Подобрать рацион</a>
+        <a class="button" href="#plans">Подобрать рацион</a>
     </div>
 
     <script type="application/ld+json">
@@ -531,42 +594,66 @@
         "mainEntity": [
             {
                 "@type": "Question",
-                "name": "По какой формуле работает калькулятор?",
+                "name": "Я боюсь, что буду голодать. Калорий не будет слишком мало?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Калькулятор использует формулу Миффлина–Сан Жеора, которая учитывает пол, возраст, вес и рост для расчёта BMR."
+                    "text": "Мы рассчитываем норму калорий и дефицит по вашим параметрам и цели. Fit Calc не использует экстремальные диеты и предлагает полноценные порции с балансом БЖУ."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Насколько точны результаты?",
+                "name": "Что, если мне не понравится еда или сервис доставки?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Результаты являются ориентировочными: на энергозатраты влияют гормональный фон, состав тела и ежедневная активность."
+                    "text": "Вы можете сменить рацион или сервис. Мы покажем несколько вариантов под вашу норму калорий — выберите тот, что подходит по вкусу и графику."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Почему нельзя есть меньше 1200 ккал?",
+                "name": "Есть ли рационы для вегетарианцев / безлактозные / безглютеновые?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Рацион ниже 1200 ккал может привести к дефициту витаминов и замедлению обмена веществ, поэтому снижать калорийность так сильно можно только под наблюдением врача."
+                    "text": "Да, партнёры предлагают специализированные линейки. Укажите свои ограничения при подборе, и мы покажем подходящие варианты."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Можно ли худеть без подсчёта калорий?",
+                "name": "Нужно ли дополнительно заниматься спортом, чтобы был результат?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Можно контролировать порции и выбирать цельные продукты, но подсчёт калорий помогает точнее управлять дефицитом и быстрее реагировать на остановку прогресса."
+                    "text": "Спорт не обязателен: контроль калорийности и баланс питания уже дают результат. Активность ускорит прогресс, но рацион подбирается так, чтобы вы могли худеть без изнурительных тренировок."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Что делать после расчёта нормы?",
+                "name": "Как оформляется и оплачивается заказ?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Используйте полученную норму для планирования меню, составьте список покупок и регулярно отслеживайте изменения веса и самочувствия."
+                    "text": "Вы выбираете рацион на сайте Fit Calc, оставляете заявку и подтверждаете заказ у сервиса доставки. Оплата производится напрямую сервису: доступна онлайн-оплата или оплата картой курьеру."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "На какой срок нужно оформлять доставку?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Можно начать с 5–7 дней, чтобы протестировать рацион, а затем продлить доставку или выбрать другую программу."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Если у меня хронические заболевания, можно ли пользоваться сервисом?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Fit Calc не заменяет консультацию врача. При наличии хронических заболеваний сначала обсудите рацион с лечащим врачом и передайте его рекомендации при подборе программы."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Чем Fit Calc отличается от обычного калькулятора калорий?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Мы не только считаем норму калорий, но и сразу подбираем готовые рационы с доставкой под ваш план — без готовки, взвешивания продуктов и подсчёта калорий."
                 }
             }
         ]

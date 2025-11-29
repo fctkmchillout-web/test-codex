@@ -16,19 +16,32 @@ const partnerCardsContainer = document.getElementById('partnerCards');
 const goalFilter = document.getElementById('goalFilter');
 const budgetFilter = document.getElementById('budgetFilter');
 const comparisonBody = document.getElementById('comparisonBody');
-const tabContent = document.getElementById('tabContent');
-const faqContent = document.getElementById('faqContent');
 const reviewGrid = document.getElementById('reviewGrid');
 const stickyBar = document.getElementById('stickyBar');
 const stickyCalories = document.getElementById('stickyCalories');
-const limitationsCheckbox = document.getElementById('dietLimitations');
-const limitationsField = document.getElementById('limitationsField');
 const summaryCalories = document.getElementById('summaryCalories');
 const summaryMaintain = document.getElementById('summaryMaintain');
 const summaryDeficit = document.getElementById('summaryDeficit');
 const summaryMacros = document.getElementById('summaryMacros');
 const summaryEmpty = document.getElementById('summaryEmpty');
 const calcResultCard = document.getElementById('calcResultCard');
+const resultTitle = document.getElementById('resultTitle');
+const resultSubtitle = document.getElementById('resultSubtitle');
+const resultsLead = document.getElementById('resultsLead');
+const resultDynamic = document.getElementById('resultDynamic');
+const resultDetail = document.getElementById('resultDetail');
+const resultMacros = document.getElementById('resultMacros');
+const planTitle = document.getElementById('planTitle');
+const planMeals = document.getElementById('planMeals');
+const planFit = document.getElementById('planFit');
+const planResult = document.getElementById('planResult');
+const planPrice = document.getElementById('planPrice');
+const dayCaloriesLabel = document.getElementById('dayCalories');
+const heroCalories = document.getElementById('heroCalories');
+const heroDelta = document.getElementById('heroDelta');
+const heroProtein = document.getElementById('heroProtein');
+const heroFat = document.getElementById('heroFat');
+const heroCarbs = document.getElementById('heroCarbs');
 
 const partners = [
     {
@@ -40,9 +53,9 @@ const partners = [
         meals: 5,
         duration: '6–7 дней',
         price: 'от 690 ₽/день',
-        badge: 'Рекомендуем',
-        program: 'Похудение 1400–1600 ккал',
-        note: 'Максимальное разнообразие блюд',
+        badge: 'Популярный выбор',
+        program: 'Лайт',
+        note: 'Без сахара и жареного',
         image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80',
         url: 'https://levelkitchen.com/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=level-kitchen'
     },
@@ -55,9 +68,9 @@ const partners = [
         meals: 4,
         duration: '5–7 дней',
         price: 'от 590 ₽/день',
-        badge: 'Эконом',
-        program: 'Фитнес рацион 1200–1400 ккал',
-        note: 'Быстрая доставка по городу',
+        badge: 'Экономно',
+        program: 'Лайт',
+        note: 'Доставка каждый день с 7:00 до 10:00',
         image: 'https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?auto=format&fit=crop&w=900&q=80',
         url: 'https://yamdiet.com/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=yamdiet'
     },
@@ -70,8 +83,8 @@ const partners = [
         meals: 5,
         duration: '7 дней',
         price: 'от 890 ₽/день',
-        badge: 'Премиум',
-        program: 'Баланс 1700–1900 ккал',
+        badge: 'Максимальный результат',
+        program: 'Баланс',
         note: 'Органические продукты и суперфуды',
         image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
         url: 'https://befit.ru/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=befit'
@@ -85,9 +98,9 @@ const partners = [
         meals: 6,
         duration: '5 дней',
         price: 'от 820 ₽/день',
-        badge: 'Белковый упор',
-        program: 'Мышечный рост 2000–2200 ккал',
-        note: 'Повышенное содержание белка',
+        badge: 'Вегетарианский',
+        program: 'Плюс',
+        note: 'Без сахара и жареного',
         image: 'https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?auto=format&fit=crop&w=900&q=80',
         url: 'https://myfood.ru/?utm_source=fit-calc&utm_medium=landing&utm_campaign=partner&utm_content=my-food'
     }
@@ -99,95 +112,22 @@ const goalLabels = {
     gain: 'Набор'
 };
 
-const menus = {
-    'Level Kitchen': {
-        calories: '1500 ккал · БЖУ 120/60/150',
-        meals: [
-            'Завтрак: творожная запеканка с ягодами — 320 ккал',
-            'Перекус: миндальное латте — 80 ккал',
-            'Обед: лосось на пару с киноа — 430 ккал',
-            'Полдник: салат с курицей и авокадо — 210 ккал',
-            'Ужин: чечевое рагу с овощами — 360 ккал'
-        ]
-    },
-    'Yamdiet': {
-        calories: '1300 ккал · БЖУ 100/45/120',
-        meals: [
-            'Завтрак: омлет с томатами — 280 ккал',
-            'Перекус: яблоко и орехи — 140 ккал',
-            'Обед: куриная грудка с булгуром — 360 ккал',
-            'Полдник: творожный мусс — 150 ккал',
-            'Ужин: судак с овощами — 310 ккал'
-        ]
-    },
-    'BeFit': {
-        calories: '1800 ккал · БЖУ 140/65/180',
-        meals: [
-            'Завтрак: греческий йогурт с гранолой — 350 ккал',
-            'Перекус: смузи с шпинатом — 170 ккал',
-            'Обед: стейк индейки с бататом — 480 ккал',
-            'Полдник: хумус с овощами — 180 ккал',
-            'Ужин: дорадо с киноа — 420 ккал'
-        ]
-    },
-    'My Food': {
-        calories: '2100 ккал · БЖУ 160/70/210',
-        meals: [
-            'Завтрак: протеиновые панкейки — 420 ккал',
-            'Перекус: творог с ягодами — 200 ккал',
-            'Обед: паста с морепродуктами — 520 ккал',
-            'Полдник: сырники без сахара — 240 ккал',
-            'Ужин: буррито с говядиной — 520 ккал'
-        ]
-    }
+const goalTexts = {
+    loss: 'похудения',
+    maintain: 'поддержания веса',
+    gain: 'набора массы'
 };
 
-const faqs = {
-    delivery: [
-        {
-            question: 'Как происходит доставка питания?',
-            answer: 'Готовые блюда доставляют ежедневно или 2–3 раза в неделю в термопакетах. Время доставки можно выбрать при оформлении заказа на сайте партнёра.'
-        },
-        {
-            question: 'Можно менять блюда и указывать предпочтения?',
-            answer: 'У большинства партнёров есть возможность выбрать меню на день или исключить продукты. Уточняйте при оформлении: мы передадим ваши пожелания в комментариях.'
-        },
-        {
-            question: 'Как хранить и разогревать набор?',
-            answer: 'Держите блюда в холодильнике при +2…+6 °C и разогревайте в микроволновке или духовке согласно инструкции на упаковке.'
-        },
-        {
-            question: 'Есть ли пробные наборы?',
-            answer: 'Да, многие сервисы предлагают пробные дни и скидки для новых клиентов. Мы вышлем действующие промокоды после расчёта.'
-        }
-    ],
-    calculator: [
-        {
-            question: 'По какой формуле работает калькулятор?',
-            answer: 'Используем формулу Миффлина–Сан Жеора: она учитывает пол, возраст, вес и рост, а затем умножает результат на коэффициент активности.'
-        },
-        {
-            question: 'Насколько точны результаты?',
-            answer: 'Цифры — ориентир. Отслеживайте вес и объёмы раз в неделю: если прогресс остановился, скорректируйте калорийность на 5–10% или добавьте активности.'
-        },
-        {
-            question: 'Почему нельзя есть меньше 1200 ккал?',
-            answer: 'Ниже 1200 ккал сложно покрыть потребности в белке, жирах и витаминах. Используйте дефицит умеренно и консультируйтесь с врачом.'
-        },
-        {
-            question: 'Что делать после расчёта нормы?',
-            answer: 'Используйте рекомендованную калорийность, чтобы выбрать подходящий рацион у партнёров или составить меню самостоятельно.'
-        }
-    ]
+const goalAdjustments = {
+    loss: { type: 'дефицит', percent: 15 },
+    maintain: { type: 'баланс', percent: 0 },
+    gain: { type: 'профицит', percent: 10 }
 };
 
 const reviews = [
-    { name: 'Екатерина, Москва', result: '-4,5 кг за 5 недель', plan: 'Level Kitchen 1500 ккал', text: 'Еда вкусная, разнообразная, не считала калории — просто следовала готовым блюдам.', avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80' },
-    { name: 'Игорь, Санкт-Петербург', result: '-6 кг за 6 недель', plan: 'Yamdiet 1300 ккал', text: 'Экономный вариант, но при этом хватает энергии для тренировок. Удобно забрать из постамата.', avatar: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=200&q=80' },
-    { name: 'Мария, Екатеринбург', result: '-3 кг за 4 недели', plan: 'BeFit 1800 ккал', text: 'Нравится качество продуктов и упаковка. Нет чувства голода, удобно брать с собой.', avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80' },
-    { name: 'Антон, Краснодар', result: '+2 кг мышц за 8 недель', plan: 'My Food 2100 ккал', text: 'Добавил силовые тренировки и просто ел готовые блюда. Рост силовых и без готовки.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80' },
-    { name: 'Светлана, Казань', result: '-5,2 кг за 6 недель', plan: 'Level Kitchen 1500 ккал', text: 'Сервис сам подобрал рацион под мои калории, добавили промокод — получилось выгодно.', avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80' },
-    { name: 'Дмитрий, Новосибирск', result: '-4 кг за 5 недель', plan: 'Yamdiet 1400 ккал', text: 'Нравится что меню простое и понятное, доставка всегда вовремя.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80' }
+    { name: 'Анна, 32 года, Москва', result: '–5 кг за первый месяц', plan: 'Рацион 1400 ккал', text: '«Всегда срывалась на работе: то перекусы, то доставка фастфуда. С рационом на 1400 ккал за первый месяц ушло 5 кг, и самое главное — вообще не голодала. Очень удобно, что ничего не нужно считать и готовить.»', avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80' },
+    { name: 'Игорь, 37 лет, Санкт-Петербург', result: '–7 кг за 6 недель', plan: 'Рацион 1800 ккал', text: '«Нужно было быстро привести себя в форму к сезону, но на диеты сил нет. Заказал рацион на 1800 ккал, плюс ходил пешком. За 6 недель –7 кг. Еда нормальная, не диетическая трава, порции плотные.»', avatar: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=200&q=80' },
+    { name: 'Екатерина, 28 лет, Екатеринбург', result: 'Экономия времени', plan: 'Рацион 1500 ккал', text: '«Главное — экономия времени. Раньше по воскресеньям готовила на неделю, теперь просто получаю коробку утром. Вес потихоньку уходит, но бонусом — стала меньше уставать.»', avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80' }
 ];
 
 yearLabel.textContent = new Date().getFullYear();
@@ -213,7 +153,8 @@ const calculateMacros = ({ weight, targetCalories }) => {
 };
 
 const state = {
-    targetCalories: null
+    targetCalories: null,
+    goal: 'loss'
 };
 
 const updateCalorieRange = (target) => {
@@ -251,23 +192,22 @@ const renderPartnerCards = () => {
         card.innerHTML = `
             <div class="card__media">
                 <img src="${partner.image}" alt="${partner.name} меню" loading="lazy">
-                <span class="card__pill card__pill--${partner.goal}">${goalLabels[partner.goal]}</span>
+                <span class="card__pill card__pill--${partner.goal}">${partner.badge}</span>
             </div>
             <div class="card__top">
                 <div class="card__logo">${partner.name}</div>
-                <span class="badge">${partner.badge}</span>
+                <span class="badge">${goalLabels[partner.goal]}</span>
             </div>
-            <h3>${partner.program}</h3>
-            <p class="subtitle">${partner.note}</p>
-            <ul>
-                <li>Калорийность: ${partner.calories} ккал/сутки</li>
-                <li>Приёмов пищи: ${partner.meals}</li>
-                <li>Срок: ${partner.duration}</li>
-                <li>Цена: ${partner.price}</li>
+            <h3>Рацион “${partner.program} ${partner.calories} ккал”</h3>
+            <ul class="card__list">
+                <li>${partner.meals} приёмов пищи в день</li>
+                <li>В калорийности, подходящей вашей цели</li>
+                <li>${partner.note}</li>
+                <li>Доставка каждый день с 7:00 до 10:00</li>
             </ul>
             <div class="card__cta">
-                <span class="card__price">${matchesRange ? 'Под вашу норму' : 'Рядом с вашей нормой'}</span>
-                <a class="button" href="${partner.url}" target="_blank" rel="noopener">Выбрать рацион</a>
+                <span class="card__price">${partner.price} · ${matchesRange ? 'Подходит вашей норме' : 'Ближайший по калорийности'}</span>
+                <a class="button" href="${partner.url}" target="_blank" rel="noopener">Выбрать и оформить доставку</a>
             </div>
         `;
         partnerCardsContainer.appendChild(card);
@@ -294,23 +234,6 @@ const renderComparison = () => {
     });
 };
 
-const renderMenuTab = (partnerName) => {
-    const data = menus[partnerName];
-    if (!data) return;
-
-    tabContent.innerHTML = `
-        <div class="tab-content__header">
-            <h3>${partnerName}</h3>
-            <p class="subtitle">${data.calories}</p>
-        </div>
-        <ul>${data.meals.map((meal) => `<li>${meal}</li>`).join('')}</ul>
-        <div class="tab-content__footer">
-            <strong>Готовые блюда без готовки</strong>
-            <a class="button button--ghost" href="#partner-plans">Посмотреть меню и оформить заказ</a>
-        </div>
-    `;
-};
-
 const renderReviews = () => {
     reviewGrid.innerHTML = '';
     reviews.forEach((review) => {
@@ -331,24 +254,45 @@ const renderReviews = () => {
     });
 };
 
-const renderFaq = (category) => {
-    const entries = faqs[category] || [];
-    faqContent.innerHTML = '';
-    entries.forEach((item) => {
-        const block = document.createElement('article');
-        block.className = 'faq__item';
-        block.innerHTML = `
-            <h3>${item.question}</h3>
-            <p>${item.answer}</p>
-        `;
-        faqContent.appendChild(block);
-    });
-};
-
 const updateStickyBar = () => {
     if (!state.targetCalories) return;
     stickyCalories.textContent = formatCalories(state.targetCalories);
     stickyBar.hidden = false;
+};
+
+const updatePlanCard = ({ targetCalories, goal, macros, amr }) => {
+    const adjustment = goalAdjustments[goal] || goalAdjustments.loss;
+    const goalText = goalTexts[goal] || goalTexts.loss;
+    const deficitCalories = Math.abs(amr - targetCalories);
+    resultDynamic.innerHTML = `Ваша ориентировочная норма — <strong>${formatCalories(amr)}</strong>.`;
+    if (adjustment.type === 'дефицит' && adjustment.percent > 0) {
+        resultDetail.innerHTML = `Для комфортного ${goalText} мы заложили безопасный дефицит <strong>${adjustment.percent}%</strong> — это примерно <strong>${formatCalories(deficitCalories)}</strong>.`;
+    } else if (adjustment.type === 'профицит') {
+        resultDetail.innerHTML = `Для комфортного ${goalText} заложили умеренный профицит <strong>${adjustment.percent}%</strong> — это примерно <strong>${formatCalories(deficitCalories)}</strong>.`;
+    } else {
+        resultDetail.innerHTML = `Для комфортного ${goalText} сохраняем баланс без дефицита.`;
+    }
+
+    resultMacros.textContent = `${formatGrams(macros.protein)} / ${formatGrams(macros.fat)} / ${formatGrams(macros.carbs)}`;
+    const planCalories = Math.round(targetCalories / 50) * 50;
+    const rangeMin = Math.round(targetCalories * 0.95);
+    const rangeMax = Math.round(targetCalories * 1.05);
+    const mealsCount = targetCalories > 2000 ? 6 : 5;
+    const avgResult = goal === 'gain' ? '+2 кг за 6–8 недель' : 'до –4.7 кг за 4 недели';
+    const priceDay = Math.max(650, Math.round(planCalories / 2));
+    const priceMonth = priceDay * 30;
+
+    planTitle.textContent = `Рацион “Баланс ${planCalories} ккал”`;
+    planMeals.textContent = `${mealsCount} приёмов пищи в день`;
+    planFit.textContent = `Подходит вашей норме: ${new Intl.NumberFormat('ru-RU').format(rangeMin)}–${new Intl.NumberFormat('ru-RU').format(rangeMax)} ккал`;
+    planResult.textContent = `Средний результат клиентов — ${avgResult}`;
+    planPrice.textContent = `${new Intl.NumberFormat('ru-RU').format(priceDay)} ₽/день · ${new Intl.NumberFormat('ru-RU').format(priceMonth)} ₽/месяц`;
+    dayCaloriesLabel.textContent = formatCalories(planCalories);
+    heroCalories.textContent = new Intl.NumberFormat('ru-RU').format(Math.round(targetCalories));
+    heroDelta.textContent = `${adjustment.type === 'профицит' ? '+' : ''}${adjustment.percent}%`;
+    heroProtein.textContent = `${Math.round(macros.protein)}г`;
+    heroFat.textContent = `${Math.round(macros.fat)}г`;
+    heroCarbs.textContent = `${Math.round(macros.carbs)}г`;
 };
 
 const handleSubmit = (event) => {
@@ -360,6 +304,7 @@ const handleSubmit = (event) => {
     const weight = clamp(Number(formData.get('weight')), 35, 250);
     const height = clamp(Number(formData.get('height')), 120, 220);
     const activity = Number(formData.get('activity'));
+    const goal = formData.get('goal');
 
     if (!age || !weight || !height || !activity) {
         form.reportValidity();
@@ -368,37 +313,48 @@ const handleSubmit = (event) => {
 
     const bmr = calculateBMR({ gender, age, weight, height });
     const amr = bmr * activity;
+    const adjustment = goalAdjustments[goal] || goalAdjustments.loss;
     const maintainCalories = amr;
-    const mildDeficitCalories = amr * 0.85;
+    const targetCalories = adjustment.type === 'профицит'
+        ? amr * (1 + adjustment.percent / 100)
+        : adjustment.type === 'баланс'
+            ? amr
+            : amr * (1 - adjustment.percent / 100);
     const aggressiveDeficitCalories = amr * 0.75;
 
-    const macros = calculateMacros({ weight, targetCalories: mildDeficitCalories });
+    const macros = calculateMacros({ weight, targetCalories });
 
     bmrField.textContent = formatCalories(bmr);
     amrField.textContent = formatCalories(amr);
-    recommendedField.textContent = formatCalories(mildDeficitCalories);
+    recommendedField.textContent = formatCalories(targetCalories);
     maintainField.textContent = formatCalories(maintainCalories);
-    mildDeficitField.textContent = formatCalories(mildDeficitCalories);
+    mildDeficitField.textContent = formatCalories(Math.min(targetCalories, maintainCalories));
     aggressiveDeficitField.textContent = formatCalories(aggressiveDeficitCalories);
 
     proteinAmountField.textContent = formatGrams(macros.protein);
     fatAmountField.textContent = formatGrams(macros.fat);
     carbAmountField.textContent = formatGrams(macros.carbs);
 
-    summaryCalories.textContent = formatCalories(mildDeficitCalories);
+    summaryCalories.textContent = formatCalories(targetCalories);
     summaryMaintain.textContent = formatCalories(maintainCalories);
-    summaryDeficit.textContent = formatCalories(mildDeficitCalories);
+    summaryDeficit.textContent = formatCalories(targetCalories);
     summaryMacros.textContent = `${formatGrams(macros.protein)} / ${formatGrams(macros.fat)} / ${formatGrams(macros.carbs)}`;
     calcResultCard.classList.add('filled');
     summaryEmpty.hidden = true;
 
-    safetyNotice.hidden = mildDeficitCalories >= 1200;
+    safetyNotice.hidden = targetCalories >= 1200;
 
-    state.targetCalories = mildDeficitCalories;
-    updateCalorieRange(mildDeficitCalories);
+    state.targetCalories = targetCalories;
+    state.goal = goal;
+    updateCalorieRange(targetCalories);
     renderPartnerCards();
     renderComparison();
     updateStickyBar();
+
+    resultTitle.textContent = 'Ваша норма калорий рассчитана';
+    resultSubtitle.textContent = 'Рекомендуемая калорийность и БЖУ готовы';
+    resultsLead.textContent = 'Ваша ориентировочная норма и рекомендованный рацион под вашу цель.';
+    updatePlanCard({ targetCalories, goal, macros, amr });
 
     resultsSection.hidden = false;
     resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -407,28 +363,9 @@ const handleSubmit = (event) => {
 form.addEventListener('submit', handleSubmit);
 goalFilter.addEventListener('change', renderPartnerCards);
 budgetFilter.addEventListener('change', renderPartnerCards);
-limitationsCheckbox.addEventListener('change', () => {
-    limitationsField.hidden = !limitationsCheckbox.checked;
-});
 
 window.addEventListener('resize', updateStickyBar);
 
-document.querySelectorAll('.tabs button').forEach((tab) => {
-    tab.addEventListener('click', () => {
-        const container = tab.closest('.tabs');
-        container.querySelectorAll('.tab').forEach((btn) => btn.classList.remove('tab--active'));
-        tab.classList.add('tab--active');
-        const tabName = tab.dataset.tab;
-        if (menus[tabName]) {
-            renderMenuTab(tabName);
-        } else if (faqs[tabName]) {
-            renderFaq(tabName);
-        }
-    });
-});
-
-renderMenuTab('Level Kitchen');
 renderPartnerCards();
 renderComparison();
-renderFaq('delivery');
 renderReviews();
