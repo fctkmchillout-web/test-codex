@@ -14,64 +14,68 @@
     <main class="page">
         <section class="hero" id="top">
             <div class="hero__intro">
-                <div class="hero__tag">Персональный расчёт</div>
-                <h1>Готовые рационы с доставкой<br>под вашу норму калорий</h1>
-                <p class="hero__lead">Fit Calc за 1 минуту подберёт меню под ваш вес, цель и режим дня, а партнёрские сервисы привезут готовую еду уже завтра.</p>
-                <p class="hero__note">Подходит для похудения, поддержания веса и набора массы.</p>
-                <div class="hero__cta-row">
-                    <a class="button" href="#calculator">Подобрать рацион и оформить доставку</a>
-                    <a class="button button--ghost" href="#plans">Выбрать меню</a>
+                <div class="hero__badges">
+                    <div class="hero__tag hero__tag--brand">#1 сервис подбора готовых рационов в России</div>
+                    <div class="hero__rating">
+                        <div class="hero__stars" aria-hidden="true">★★★★★</div>
+                        <p>4.8 из 5 · на основе 1,247 отзывов</p>
+                    </div>
+                </div>
+                <h1>Похудейте на 4-7 кг за месяц без голода и готовки</h1>
+                <p class="hero__lead">Персональный расчёт калорий + готовые рационы с доставкой. Уже 3,247 человек достигли своей цели с Fit Calc.</p>
+                <p class="hero__note">Рассчитайте норму калорий и получите варианты меню под ваш дефицит.</p>
+                <div class="hero__cta-row hero__cta-row--center">
+                    <a class="button" href="#calculator">Подобрать безопасный рацион</a>
+                    <a class="button button--ghost" href="#plans">Посмотреть примеры меню</a>
                 </div>
                 <ul class="hero__points hero__points--inline">
-                    <li>Только проверенные сервисы доставки</li>
-                    <li>Без жёстких диет и голода</li>
-                    <li>Уже более 3 000 человек подобрали рацион через Fit Calc</li>
+                    <li>127 человек сейчас подбирают рацион</li>
+                    <li>Экономия 9 часов в неделю на готовке и покупках</li>
+                    <li>Без срывов — в меню сбалансированные блюда</li>
                 </ul>
             </div>
             <div class="hero__visual" aria-hidden="true">
-                <div class="hero__stat-card">
-                    <div class="hero__stat-top">
-                        <div>
-                            <p class="eyebrow">Ваша норма</p>
-                            <p class="hero__stat-value" id="heroCalories">1 850</p>
-                            <p class="hero__stat-caption">ккал в день</p>
+                <div class="hero__panel">
+                    <div class="hero__stat-card">
+                        <div class="hero__stat-top">
+                            <div>
+                                <p class="eyebrow">Ваша норма</p>
+                                <p class="hero__stat-value" id="heroCalories">1 850</p>
+                                <p class="hero__stat-caption">ккал в день</p>
+                            </div>
+                            <div class="pill" id="heroDelta">-15%</div>
                         </div>
-                        <div class="pill" id="heroDelta">-15%</div>
-                    </div>
-                    <div class="hero__stat-macros">
-                        <div>
-                            <span id="heroProtein">138г</span>
-                            <small>Белки</small>
+                        <div class="hero__stat-macros">
+                            <div>
+                                <span id="heroProtein">138г</span>
+                                <small>Белки</small>
+                            </div>
+                            <div>
+                                <span id="heroFat">62г</span>
+                                <small>Жиры</small>
+                            </div>
+                            <div>
+                                <span id="heroCarbs">171г</span>
+                                <small>Углеводы</small>
+                            </div>
                         </div>
-                        <div>
-                            <span id="heroFat">62г</span>
-                            <small>Жиры</small>
+                    </div>
+                    <div class="screen-mock">
+                        <p class="screen-mock__title">Пример меню</p>
+                        <div class="screen-mock__item">
+                            <span>Завтрак</span>
+                            <strong>Омлет с овощами — 320 ккал</strong>
                         </div>
-                        <div>
-                            <span id="heroCarbs">171г</span>
-                            <small>Углеводы</small>
+                        <div class="screen-mock__item">
+                            <span>Обед</span>
+                            <strong>Лосось с киноа — 450 ккал</strong>
                         </div>
+                        <div class="screen-mock__item">
+                            <span>Ужин</span>
+                            <strong>Тайская курица — 380 ккал</strong>
+                        </div>
+                        <p class="screen-mock__footer">Готовые рационы от партнёров</p>
                     </div>
-                </div>
-                <figure class="hero__photo">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Сервировка со здоровыми блюдами" loading="lazy">
-                    <figcaption>Крупные фото реальных сетов питания от партнёров</figcaption>
-                </figure>
-                <div class="screen-mock">
-                    <p class="screen-mock__title">Пример меню</p>
-                    <div class="screen-mock__item">
-                        <span>Завтрак</span>
-                        <strong>Омлет с овощами — 320 ккал</strong>
-                    </div>
-                    <div class="screen-mock__item">
-                        <span>Обед</span>
-                        <strong>Лосось с киноа — 450 ккал</strong>
-                    </div>
-                    <div class="screen-mock__item">
-                        <span>Ужин</span>
-                        <strong>Тайская курица — 380 ккал</strong>
-                    </div>
-                    <p class="screen-mock__footer">Готовые рационы от партнёров</p>
                 </div>
             </div>
         </section>
@@ -461,9 +465,6 @@
                     <p class="subtitle">Сохраняем калории и вкусы, подстраиваем под вашу цель.</p>
                 </div>
                 <a class="button" href="#plans">Подобрать рацион</a>
-            </div>
-            <div class="center">
-                <a class="button" href="#plans">Хочу такой же результат → подобрать рацион</a>
             </div>
         </section>
 
